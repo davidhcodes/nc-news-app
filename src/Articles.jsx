@@ -1,14 +1,19 @@
 // import { all } from "axios";
 import { getArticles } from "../utils/api";
-import { useEffect, useState } from "react";
+import moment from "moment";
+import { useEffect, useState, useParams } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
+import IndividualArticle from "./IndividualArticle";
 
 function Articles({ topics }) {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState(null);
   const [articles, setArticles] = useState([]);
   const [filter, setFilter] = useState([]);
+  // const { article_id } = useParams();
+
+  // console.log(article_id);
 
   useEffect(() => {
     setIsLoading(true);
@@ -26,10 +31,12 @@ function Articles({ topics }) {
   }, [filter]);
 
   const formatTime = (timeISO) => {
-    let newString = "";
-    const newDate = timeISO.slice(0, 10);
-    const newTime = timeISO.slice(11, 16);
-    return newDate + " " + newTime;
+    // let newString = "";
+    // const newDate = timeISO.slice(0, 10);
+    // const newTime = timeISO.slice(11, 16);
+    // return newDate + " " + newTime;
+    const newTime = moment(timeISO).format("dddd, MMMM Do YYYY, h:mm a");
+    return newTime;
   };
   function handleClick(event) {
     let selectedTopic = event.target.innerHTML;
@@ -39,6 +46,7 @@ function Articles({ topics }) {
       setFilter(selectedTopic);
     }
   }
+
   const arrayOfTopics = topics.map((topic) => {
     return (
       <>
@@ -64,6 +72,10 @@ function Articles({ topics }) {
           <p>Comment count: {article.comment_count}</p>
           <p>Date Created: {formatTime(article.created_at)}</p>
           <p> Votes: {article.votes}</p>
+
+          <Link className="link" to={`/articles/${article.article_id}`}>
+            <button className="">Read more</button>
+          </Link>
         </div>
       </>
     );
@@ -74,6 +86,9 @@ function Articles({ topics }) {
       <header>
         <h1> Articles </h1>
       </header>
+
+      {/* <button onClick={<IndividualArticle />}>Individual article</button> */}
+
       <div className="topicsList">
         {isLoading ? <p>Loading!</p> : arrayOfTopics}
         <button className="topicsButtons" onClick={handleClick}>

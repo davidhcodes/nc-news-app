@@ -11,10 +11,18 @@ export const getArticles = (topic)=>{
     })
 }
 
+
+export const getArticleByID = (article_id)=>{
+    return newsApi.get(`/articles/${article_id}`, )
+        .then(({data})=>{
+            console.log(data)
+        return data[0]
+    })
+}
+
 export const getTopics = ()=>{
     return newsApi.get("/topics")
-        // {params: {topics}})
-        .then(({data})=>{
+            .then(({data})=>{
         return data.topics
     })
 }
