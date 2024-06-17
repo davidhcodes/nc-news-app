@@ -66,3 +66,46 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+.img_size{
+  height: 12.5rem;
+  width: 15rem;
+  /* float:left; */
+  display: block;
+  float:right;
+  margin-top: 1.5rem;
+  margin-right: 1rem;
+  /* padding-left: 200px; */
+
+  /* padding: 50px; */
+
+  /* display: block;
+  margin-right: 10px; */
+}
+
+
+
+.article_box{
+
+  background-color: #e6e7f6;
+
+
+}
+
+.articles-container{
+ background-color: #535bf2;
+ padding: 1rem;
+ margin: 1rem;
+}
+
+.topicsList{
+  /* background-color: blueviolet; */
+  display: flex;
+  margin-left: 18rem;
+  margin-right: 16rem;
+}
+.topicsButtons{
+  background-color: #747bff;
+  margin-right: 2rem;
+}
