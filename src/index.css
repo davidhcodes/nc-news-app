@@ -109,3 +109,20 @@ button:focus-visible {
   background-color: #747bff;
   margin-right: 2rem;
 }
+
+.articleHeader{
+  background-color: #8e91c9;
+}
+
+.img_articlepage{
+  height: 12.5rem;
+  width: 15rem;
+  display:block;
+  float: right;
+}
+
+.articleParagraph{
+  text-align: left;
+  display: flex;
+}
+

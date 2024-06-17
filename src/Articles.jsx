@@ -11,16 +11,12 @@ function Articles({ topics }) {
   const [err, setErr] = useState(null);
   const [articles, setArticles] = useState([]);
   const [filter, setFilter] = useState([]);
-  // const { article_id } = useParams();
-
-  // console.log(article_id);
 
   useEffect(() => {
     setIsLoading(true);
 
     getArticles(filter)
       .then((allArticles) => {
-        // console.log(allArticles);
         setArticles(allArticles);
         setIsLoading(false);
       })
@@ -31,10 +27,6 @@ function Articles({ topics }) {
   }, [filter]);
 
   const formatTime = (timeISO) => {
-    // let newString = "";
-    // const newDate = timeISO.slice(0, 10);
-    // const newTime = timeISO.slice(11, 16);
-    // return newDate + " " + newTime;
     const newTime = moment(timeISO).format("dddd, MMMM Do YYYY, h:mm a");
     return newTime;
   };
@@ -50,7 +42,7 @@ function Articles({ topics }) {
   const arrayOfTopics = topics.map((topic) => {
     return (
       <>
-        <div>
+        <div key={topic.id}>
           <button className="topicsButtons" onClick={handleClick}>
             {topic.slug}
           </button>
@@ -64,7 +56,7 @@ function Articles({ topics }) {
   const arrayOfArticles = articles.map((article) => {
     return (
       <>
-        <div className="article_box">
+        <div key={article.article_id} className="article_box">
           <img className="img_size" src={article.article_img_url} />
           <h2> {article.title}</h2>
           <h3>Topic: {article.topic} </h3>

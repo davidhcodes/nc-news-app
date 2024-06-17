@@ -17,7 +17,6 @@ function App() {
 
     getTopics()
       .then((allTopics) => {
-        console.log(allTopics);
         setTopics(allTopics);
         setIsLoading(false);
       })
