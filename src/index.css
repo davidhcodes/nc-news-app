@@ -88,7 +88,7 @@ button:focus-visible {
 
 .article_box{
 
-  background-color: #e6e7f6;
+  background-color: #bec1ea;
 
 
 }
@@ -126,3 +126,24 @@ button:focus-visible {
   display: flex;
 }
 
+.text-box{
+  background-color: #a8acf2;
+  display: flex;
+  text-align: left;
+}
+
+.commentInfo{
+  background-color: #535bf2;
+  display: block;
+
+}
+
+.interactComment{
+  background-color: white;
+  display: flex;
+  margin-bottom: 4rem;
+}
+
+.author{
+  font-weight: bold;
+}

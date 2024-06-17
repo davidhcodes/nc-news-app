@@ -15,9 +15,17 @@ export const getArticles = (topic)=>{
 export const getArticleByID = (article_id)=>{
     return newsApi.get(`/articles/${article_id}`, )
         .then(({data})=>{
-            console.log(data)
+
         return data[0]
     })
+}
+
+export const getCommentsByArticleID = (article_id)=>{
+    return newsApi.get(`/articles/${article_id}/comments`, )
+    .then(({data})=>{
+        console.log(data)
+    return data
+})
 }
 
 export const getTopics = ()=>{
