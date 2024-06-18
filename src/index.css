@@ -45,6 +45,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin-right: 50px;
 }
 button:hover {
   border-color: #646cff;
@@ -95,7 +96,7 @@ button:focus-visible {
 
 .articles-container{
  background-color: #535bf2;
- padding: 1rem;
+ padding: 3rem;
  margin: 1rem;
 }
 
@@ -146,4 +147,19 @@ button:focus-visible {
 
 .author{
   font-weight: bold;
+}
+
+.articleInteract{
+  background-color: white;
+  display: flex;
+}
+
+.articleVoteBox{
+  background: white;
+  display: flex;
+  margin-right: 5rem;
+}
+
+.commentButton{
+  background-color: #a8acf2;
 }

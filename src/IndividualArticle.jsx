@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import moment from "moment";
 import { useParams } from "react-router-dom";
-import { getArticleByID, getCommentsByArticleID } from "../utils/api";
+import {
+  getArticleByID,
+  getCommentsByArticleID,
+  patchArticle,
+  patchComment,
+} from "../utils/api";
 
 function IndividualArticle() {
   const { article_id } = useParams();
@@ -11,6 +16,7 @@ function IndividualArticle() {
   const [err, setErr] = useState(null);
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
+  const [votes, setVotes] = useState(null);
 
   const formatTime = (timeISO) => {
     const newTime = moment(timeISO).format("dddd, MMMM Do YYYY, h:mm a");
@@ -33,7 +39,6 @@ function IndividualArticle() {
 
     getCommentsByArticleID(article_id)
       .then((comments) => {
-        console.log(comments);
         setComments(comments);
         setCommentsIsLoading(false);
       })
@@ -42,6 +47,30 @@ function IndividualArticle() {
         setCommentsIsLoading(false);
       });
   }, [article_id]);
+
+  /* Here we are optimistically rendering by increasing the vote count before making a new GET request to update all the comments. */
+  const incVoteComments = (comment_id) => {
+    console.log(comment_id);
+    patchComment(comment_id);
+
+    setComments((existingComment) => {
+      return existingComment.map((comment) => {
+        if (comment.comment_id === comment_id) {
+          return { ...comment, votes: comment.votes + 1 };
+        }
+        return comment;
+      });
+    });
+  };
+
+  /* Here we are optimistically rendering by increasing the vote count before making a new GET request to update the article. */
+  const incVoteArticles = (article_id) => {
+    console.log(article_id);
+    patchArticle(article_id);
+    setArticle((existingArticle) => {
+      return { ...existingArticle, votes: existingArticle.votes + 1 };
+    });
+  };
 
   const arrayOfComments = comments.map((comment) => {
     return (
@@ -55,7 +84,9 @@ function IndividualArticle() {
             <p> {comment.body}</p>
           </div>
           <div className="interactComment">
-            <button>⬆️ </button>
+            <button onClick={() => incVoteComments(comment.comment_id)}>
+              ⬆️
+            </button>
             <p>{comment.votes}</p>
           </div>
         </div>
@@ -73,9 +104,19 @@ function IndividualArticle() {
           </div>
           <img className="img_articlepage" src={article.article_img_url} />
           <p className="articleParagraph">{article.body}</p>
-          <p>Author: {article.author}</p>
-          <p> Votes: {article.votes}</p>
-          <p>Date Created: {formatTime(article.created_at)}</p>
+          <p className="author">Author: {article.author}</p>
+          <div className="articleInteract">
+            <div className="articleVoteBox">
+              <button
+                className=""
+                onClick={() => incVoteArticles(article.article_id)}
+              >
+                ⬆️
+              </button>
+              <p>{article.votes}</p>
+            </div>
+            <p>Date Created: {formatTime(article.created_at)}</p>
+          </div>
         </div>
         <div>
           <h1> Comments </h1>
