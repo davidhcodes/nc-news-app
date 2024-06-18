@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext, useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./Homepage";
 import Articles from "./Articles";
+import Users from "./Users";
 import { getTopics } from "../utils/api";
 import "./App.css";
 import IndividualArticle from "./IndividualArticle";
@@ -31,6 +32,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/users" element={<Users />} />
           <Route path="/articles" element={<Articles topics={topics} />} />
           <Route path="/articles/:article_id" element={<IndividualArticle />} />
         </Routes>
