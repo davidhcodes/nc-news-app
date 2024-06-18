@@ -68,6 +68,7 @@ button:focus-visible {
   }
 }
 
+/* Start of custom css additions */
 
 .img_size{
   height: 12.5rem;
@@ -77,12 +78,7 @@ button:focus-visible {
   float:right;
   margin-top: 1.5rem;
   margin-right: 1rem;
-  /* padding-left: 200px; */
 
-  /* padding: 50px; */
-
-  /* display: block;
-  margin-right: 10px; */
 }
 
 
@@ -161,5 +157,224 @@ button:focus-visible {
 }
 
 .commentButton{
+  background-color: #ffffff;
+}
+
+.addComment{
+  background-color: rgb(255, 150, 70);
+  margin-left: 300px;
+  margin-right: 300px;
+  display: flex;
+  padding: 10px;
+}
+
+.inputComment{
+  background-color: white;
+  height: 50px;
+  width:500px;
+  margin-left: 20px;
+  padding-left: 5px;
+
+}
+.inputTextComment{
+  resize: none;
+}
+
+
+.articleContent{
+  text-align: justify;
+  }
+  
+
+.userList{
+  list-style: none;
+}
+
+/* .container{
+  width:100%;
+  padding: 0;
+  margin: 0;
+
+} */
+
+@media (max-width: 600px){
+
+.topPageHeader{
+  background-color: #5a63e5;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  height: 5rem;
+  padding:0;
+  left: 0;
+  margin-bottom: 100px;
+}
+.HeaderHomeButton{
+  color: white;
+  font-size: 20px;
+  font-weight:bold;
+  display:inline-block;
+  position: absolute;
+  left:0;
+  margin-left:20px
+}
+.HeaderPageText{
+  color: white;
+  font-size: 20px;
+  font-weight:bold;
+  text-align: right;
+  position: absolute;
+  right:0;
+  margin-right: 10px;
+  display:inline-block;
+
+}
+
+.HeaderPageUserLogo{
+height: 2rem;
+}
+
+  .img_size{
+    height:5rem;
+    width: 7rem;
+    float:right;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+  
+  }
+  .article_box{
+
+    background-color: #bec1ea;
+     margin-right:0.1rem;
+    margin-left: 0.1rem; 
+    height:30rem;
+    width:15rem;
+    display:block
+  
+  }
+
+  .comment_box{
+    margin-right: 10px;
+  }
+
+
+  .topicsButtons{
+    background-color: #747bff;
+    margin-right: 0.1rem;
+    height: 2.5rem;
+    margin-left:0.1rem;
+  }
+  .topicsList{
+    display: flex;
+    margin-left: 0rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+  .articles-container{
+   background-color: #535bf2;
+   padding:0.75rem;
+   width:20rem;
+   margin: 0;
+  }
+
+  .pageContainer{
+    height: 667px;
+    width: 375px;
+    margin-top: 50px;
+  
+
+  }
+
+  h2{
+    font-size: 20px;
+    text-align: left;
+    margin-left: 10px;
+  }
+  
+.articleHeader{
+  background-color: #8e91c9;
+  font-size: 10px;
+}
+
+
+.individualArticleContainer{
+  background-color: #535bf2;
+   padding:0;
+   margin-top: 50px;
+   width:100%;
+  text-align: justify;
+}
+
+.img_articlepage{
+  height:10rem;
+  width: 10rem;
+  float: right;
+  margin-bottom: 5rem;
+}
+
+.articleParagraph{
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+.text-box{
   background-color: #a8acf2;
+  display: flex;
+}
+
+.commentInfo{
+  background-color: #535bf2;
+  display: block;
+
+}
+
+.interactComment{
+  background-color: white;
+  display: flex;
+  margin-bottom: 0rem;
+
+}
+
+.articleContent{
+text-align: justify;
+}
+
+.author{
+  font-weight: bold;
+}
+
+.articleInteract{
+  background-color: white;
+  display: flex;
+height: 3rem;
+}
+
+.articleVoteBox{
+  background: white;
+  display: flex;
+
+}
+
+.commentButton{
+  background-color: #ffffff;
+}
+
+.addComment{
+  background-color: rgb(255, 150, 70);
+  margin-left: 0rem;
+  margin-right: 0.1rem;
+  display: flex;
+  padding: 0.5rem;
+}
+
+.inputComment{
+  background-color: white;
+  height: 3rem;
+  width:7rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-left: 0.3rem;
+
+}
+
 }
