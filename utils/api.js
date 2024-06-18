@@ -23,7 +23,6 @@ export const getArticleByID = (article_id)=>{
 export const getCommentsByArticleID = (article_id)=>{
     return newsApi.get(`/articles/${article_id}/comments`, )
     .then(({data})=>{
-        console.log(data)
     return data
 })
 }
@@ -34,6 +33,28 @@ export const getTopics = ()=>{
         return data.topics
     })
 }
+
+
+export const patchComment = (comment_id)=>{
+    const patchBody ={inc_votes:1}
+
+    return newsApi.patch(`/comments/${comment_id}`, patchBody)
+    .then(({data})=>{
+        return data.comment
+    })
+}
+
+
+export const patchArticle = (article_id)=>{
+    const patchBody ={inc_votes:1}
+
+    return newsApi.patch(`/articles/${article_id}`, patchBody)
+    .then(({data})=>{
+        console.log(data)
+        return data.articles
+    })
+}
+
 
 
 /*
