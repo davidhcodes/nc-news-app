@@ -2,30 +2,59 @@
 import { getArticles } from "../utils/api";
 import moment from "moment";
 import { useEffect, useState, useParams } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useSearchParams,
+} from "react-router-dom";
 import { Link } from "react-router-dom";
 import Header from "./Header";
 import IndividualArticle from "./IndividualArticle";
+// import { search } from "../../be-nc-news/routes/users-router";
 
 function Articles({ topics }) {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState(null);
   const [articles, setArticles] = useState([]);
   const [filter, setFilter] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sortByQuery = searchParams.get("sort_by"); // "average_weight"
+  const orderQuery = searchParams.get("order"); // "asc
+  const topic = searchParams.get("topic");
+
+  // if (topic == null) {
+  //   setFilter(topic);
+  // }
+  console.log(searchParams);
+  console.log(topic);
 
   useEffect(() => {
     setIsLoading(true);
 
-    getArticles(filter)
-      .then((allArticles) => {
-        setArticles(allArticles);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setErr(err);
-        setIsLoading(false);
-      });
-  }, [filter]);
+    if (topic !== null || undefined) {
+      setFilter(topic);
+      getArticles(topic)
+        .then((allArticles) => {
+          setArticles(allArticles);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setErr(err);
+          setIsLoading(false);
+        });
+    } else {
+      getArticles(filter, sortByQuery, orderQuery)
+        .then((allArticles) => {
+          setArticles(allArticles);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setErr(err);
+          setIsLoading(false);
+        });
+    }
+  }, [filter, topic, sortByQuery, orderQuery]);
 
   const formatTime = (timeISO) => {
     const newTime = moment(timeISO).format("dddd, MMMM Do YYYY, h:mm a");
@@ -72,6 +101,14 @@ function Articles({ topics }) {
     );
   });
 
+  const setSortOrder = (direction) => {
+    // copy existing queries to avoid mutation
+    const newParams = new URLSearchParams(searchParams);
+    // set the order query
+    newParams.set("order", direction);
+    setSearchParams(newParams);
+  };
+
   return (
     <>
       <Header />
@@ -86,6 +123,13 @@ function Articles({ topics }) {
           <button className="topicsButtons" onClick={handleClick}>
             All
           </button>
+        </div>
+        <div className="filterButtons">
+          {" "}
+          <h2>Placeholder for filtering buttons </h2>
+          <Link className="link" to={`/articles?sort_by=author`}>
+            <button onClick={() => setSortOrder("DESC")}>Sort By Author</button>
+          </Link>
         </div>
         <div className="articles-container">
           <div>
