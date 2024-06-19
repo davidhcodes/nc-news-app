@@ -9,9 +9,16 @@ function Header() {
     <>
       <div className="topPageHeader">
         <div className="HeaderHomeButton">
-          <Link className="link" to="/">
-            <h3>🏡</h3>
-          </Link>
+          <div>
+            <Link className="link" to="/">
+              <h3>🏡</h3>
+            </Link>
+          </div>
+          <div>
+            <Link className="link" to="/users">
+              <h3 className="HeaderLoginButton">Login</h3>
+            </Link>
+          </div>
         </div>
         <div className="HeaderPageText">
           <p>

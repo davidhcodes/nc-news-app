@@ -42,13 +42,11 @@ function Articles({ topics }) {
 
   const arrayOfTopics = topics.map((topic) => {
     return (
-      <>
-        <div key={topic.id}>
-          <button className="topicsButtons" onClick={handleClick}>
-            {topic.slug}
-          </button>
-        </div>
-      </>
+      <li className="userList" key={topic.slug}>
+        <button className="topicsButtons" onClick={handleClick}>
+          {topic.slug}
+        </button>
+      </li>
     );
   });
 
@@ -56,23 +54,21 @@ function Articles({ topics }) {
 
   const arrayOfArticles = articles.map((article) => {
     return (
-      <>
-        <li>
-          <div key={article.article_id} className="article_box">
-            <img className="img_size" src={article.article_img_url} />
-            <h2> {article.title}</h2>
-            <h3>Topic: {article.topic} </h3>
-            <h3>Author: {article.author}</h3>
-            <p>Comment count: {article.comment_count}</p>
-            <p>Date Created: {formatTime(article.created_at)}</p>
-            <p> Votes: {article.votes}</p>
+      <li key={article.article_id}>
+        <div className="article_box">
+          <img className="img_size" src={article.article_img_url} />
+          <h2> {article.title}</h2>
+          <h3>Topic: {article.topic} </h3>
+          <h3>Author: {article.author}</h3>
+          <p>Comment count: {article.comment_count}</p>
+          <p>Date Created: {formatTime(article.created_at)}</p>
+          <p> Votes: {article.votes}</p>
 
-            <Link className="link" to={`/articles/${article.article_id}`}>
-              <button className="">Read more</button>
-            </Link>
-          </div>
-        </li>
-      </>
+          <Link className="link" to={`/articles/${article.article_id}`}>
+            <button className="">Read more</button>
+          </Link>
+        </div>
+      </li>
     );
   });
 
@@ -93,7 +89,9 @@ function Articles({ topics }) {
         </div>
         <div className="articles-container">
           <div>
-            <ul>{isLoading ? <p>Loading!</p> : arrayOfArticles}</ul>
+            <ul className="userList">
+              {isLoading ? <p>Loading!</p> : arrayOfArticles}
+            </ul>
           </div>
         </div>
       </div>

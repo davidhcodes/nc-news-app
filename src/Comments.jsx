@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { UserContext } from "./contexts/UserContext";
 import moment from "moment";
 import {
+  deleteComment,
   getCommentsByArticleID,
   patchComment,
   postComment,
@@ -35,8 +36,6 @@ function Comments({ article_id, article }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(user.username);
-
     if (user.username === null) {
       alert("You need to be logged in");
     } else {
@@ -51,36 +50,58 @@ function Comments({ article_id, article }) {
     }
   };
 
+  const handleDeleteComment = (comment_id) => {
+    const filtered = comments.filter(
+      (commentToDelete) => commentToDelete.comment_id !== comment_id
+    );
+
+    deleteComment(comment_id).then(() => {
+      setComments([...filtered]);
+    });
+  };
+
   if (CommentsIsLoading) return <p> Comments are loading!...</p>;
 
   const arrayOfComments = comments.map((comment) => {
     return (
-      <>
-        <li key={comment.id} className="userList">
-          <div className="author">{comment.author}</div>
+      <li key={comment.comment_id} className="userList">
+        <div className="author">{comment.author}</div>
 
-          <div>{formatTime(comment.created_at)}</div>
+        <div>{formatTime(comment.created_at)}</div>
 
-          <div key={comment.comment_id} className="comment_box">
-            <div className="text-box">
-              <p> {comment.body}</p>
-            </div>
-            <div className="interactComment">
-              <button onClick={() => incVoteComments(comment.comment_id)}>
-                ⬆️
-              </button>
-              <p>{comment.votes}</p>
-            </div>
+        <div key={comment.comment_id} className="comment_box">
+          <div className="text-box">
+            <p> {comment.body}</p>
           </div>
-        </li>
-      </>
+          <div className="interactComment">
+            <button onClick={() => incVoteComments(comment.comment_id)}>
+              ⬆️
+            </button>
+            <p>{comment.votes}</p>
+
+            {user.username === comment.author ? (
+              <p>
+                {" "}
+                <button
+                  onClick={() => {
+                    handleDeleteComment(comment.comment_id);
+                  }}
+                >
+                  Delete
+                </button>
+              </p>
+            ) : (
+              <p>{""}</p>
+            )}
+          </div>
+        </div>
+      </li>
     );
   });
 
   // }
   /* Here we are optimistically rendering by increasing the vote count before making a new GET request to update all the comments. */
   const incVoteComments = (comment_id) => {
-    console.log(comment_id);
     patchComment(comment_id);
 
     setComments((existingComment) => {
