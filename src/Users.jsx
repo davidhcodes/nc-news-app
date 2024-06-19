@@ -14,7 +14,6 @@ function Users() {
 
     getUsers()
       .then((allUsers) => {
-        console.log(allUsers);
         setUserList(allUsers);
         setIsLoading(false);
       })
@@ -43,7 +42,7 @@ function Users() {
       <ul className="userList">
         {userList.map((user) => {
           return (
-            <li key={user.id}>
+            <li key={user.username}>
               <button onClick={updateUsername}>{user.username}</button>
             </li>
           );
