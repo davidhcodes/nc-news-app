@@ -2,6 +2,7 @@ import { useEffect, useState, createContext, useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./Homepage";
 import Articles from "./Articles";
+import Topics from "./Topics";
 import Users from "./Users";
 import { getTopics } from "../utils/api";
 import "./App.css";
@@ -33,6 +34,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/topics" element={<Topics topics={topics} />} />
           <Route path="/articles" element={<Articles topics={topics} />} />
           <Route path="/articles/:article_id" element={<IndividualArticle />} />
         </Routes>

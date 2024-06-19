@@ -16,6 +16,9 @@ function Homepage() {
         <Link className="link" to="/users">
           <h1>Users</h1>
         </Link>
+        <Link className="link" to="/topics">
+          <h1>Topics</h1>
+        </Link>
       </nav>
     </>
   );

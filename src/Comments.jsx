@@ -14,6 +14,7 @@ function Comments({ article_id, article }) {
   const [err, setErr] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const [isDisabled, setDisabled] = useState(false);
 
   const formatTime = (timeISO) => {
     const newTime = moment(timeISO).format("dddd, MMMM Do YYYY, h:mm a");
@@ -33,8 +34,28 @@ function Comments({ article_id, article }) {
       });
   }, [article_id]);
 
+  useEffect(() => {
+    let timer;
+    if (isDisabled) {
+      timer = setTimeout(() => {
+        setDisabled(false), 2000;
+      });
+    }
+
+    return () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
+  }, [isDisabled]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (isDisabled) {
+      return;
+    }
+    setDisabled(true);
 
     if (user.username === null) {
       alert("You need to be logged in");
