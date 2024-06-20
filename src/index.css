@@ -70,6 +70,53 @@ button:focus-visible {
 
 /* Start of custom css additions */
 
+.topPageHeader{
+  background-color: #5a63e5;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  height: 5rem;
+  padding:0;
+  left: 0;
+  margin-bottom: 100px;
+  color: white;
+}
+.HeaderHomeButton{
+  color: white;
+  font-size: 20px;
+  font-weight:bold;
+  display:inline-block;
+  position: absolute;
+  left:0;
+  margin-left:20px
+}
+.HeaderLoginButton{
+  color: white;
+  font-size: 17px;
+  font-weight:bold;
+  display:inline-block;
+  position: absolute;
+  /* left:0; */
+  top:0;
+  margin-top: 30px;
+  margin-left:20px
+}
+.HeaderPageText{
+  color: white;
+  font-size: 15px;
+  font-weight:bold;
+  text-align: right;
+  position: absolute;
+  right:0;
+  margin-right: 300px;
+  display:inline-block;
+
+}
+
+.HeaderPageUserLogo{
+height: 2rem;
+}
+
 .img_size{
   height: 12.5rem;
   width: 15rem;
@@ -90,6 +137,11 @@ button:focus-visible {
 
 }
 
+.comment_box{
+  margin-right: 10px;
+}
+
+
 .articles-container{
  background-color: #535bf2;
  padding: 3rem;
@@ -105,6 +157,17 @@ button:focus-visible {
 .topicsButtons{
   background-color: #747bff;
   margin-right: 2rem;
+  color:white;
+}
+
+
+
+
+.topicsList{
+  display: flex;
+  margin-left: 0rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 
 .articleHeader{
@@ -150,6 +213,15 @@ button:focus-visible {
   display: flex;
 }
 
+.articles-container{
+  background-color: #535bf2;
+  padding:0.75rem;
+  /* width:20rem; */
+  width: 100%;
+  margin: 0;
+ }
+
+
 .articleVoteBox{
   background: white;
   display: flex;
@@ -189,6 +261,120 @@ button:focus-visible {
 .userList{
   list-style: none;
 }
+ 
+
+ .pageContainer{
+  height: 667px;
+  width: 100%;
+  margin-top: 100px;
+
+
+} 
+
+h2{
+  font-size: 20px;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.articleHeader{
+background-color: #8e91c9;
+font-size: 10px;
+margin: 5px;
+}
+
+
+.individualArticleContainer{
+background-color: #535bf2;
+ padding:0;
+ margin-top: 50px;
+ /* margin-right: 100px; */
+
+ width:100%;
+text-align: justify;
+}
+
+.img_articlepage{
+height:10rem;
+width: 10rem;
+float: right;
+margin-bottom: 5rem;
+}
+
+.articleParagraph{
+font-size: 0.75rem;
+margin-left: 0.5rem;
+}
+
+.text-box{
+background-color: #a8acf2;
+display: flex;
+}
+
+.commentInfo{
+background-color: #535bf2;
+display: block;
+
+}
+
+.interactComment{
+background-color: white;
+display: flex;
+margin-bottom: 0rem;
+
+}
+
+.articleContent{
+text-align: justify;
+}
+
+.author{
+font-weight: bold;
+}
+
+.articleInteract{
+background-color: white;
+display: flex;
+height: 3rem;
+}
+
+.articleVoteBox{
+background: white;
+display: flex;
+
+}
+
+.commentButton{
+background-color: #ffffff;
+}
+
+.addComment{
+background-color: rgb(255, 150, 70);
+margin-left: 0rem;
+margin-right: 0.1rem;
+display: flex;
+padding: 0.5rem;
+}
+
+.inputComment{
+background-color: white;
+height: 3rem;
+width:7rem;
+margin-left: 1rem;
+margin-right: 1rem;
+padding-left: 0.3rem;
+
+}
+
+.topicsPageButtons{
+background-color: #747bff;
+margin-right: 0.1rem;
+height: 5rem;
+width: 10rem;
+margin-bottom: 1rem;
+margin-left:0.1rem;
+}
+
 
 /* .container{
   width:100%;
@@ -399,6 +585,16 @@ height: 3rem;
   width: 10rem;
   margin-bottom: 1rem;
   margin-left:0.1rem;
+}
+
+.filterButtons{
+  background-color: #f9f9f9;
+  color:black
+}
+
+.filterButtons:focus{
+  background-color: black;
+  color:white;
 }
 
 }
