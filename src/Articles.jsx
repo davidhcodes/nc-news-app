@@ -154,8 +154,8 @@ function Articles({ topics }) {
           </Link>
           <select onChange={setSortOrder}>
             <option value={""}> Order by ...</option>
-            <option value={"ASC"}> ASC</option>
-            <option value={"DESC"}> DESC</option>
+            <option value={"asc"}> ASC</option>
+            <option value={"desc"}> DESC</option>
           </select>
         </div>
         <div className="articles-container">
