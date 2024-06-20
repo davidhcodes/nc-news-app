@@ -16,7 +16,7 @@ function IndividualArticle() {
   const { article_id } = useParams();
 
   const [ArticleIsLoading, setArticleIsLoading] = useState(false);
-  const [err, setErr] = useState(null);
+  const [errorMessage, setErr] = useState(null);
   const [article, setArticle] = useState({});
   const [newComment, setNewComment] = useState("");
 
@@ -33,7 +33,7 @@ function IndividualArticle() {
         setArticleIsLoading(false);
       })
       .catch((err) => {
-        setErr(err);
+        setErr(err.message);
         setArticleIsLoading(false);
       });
   }, [article_id]);
@@ -45,6 +45,10 @@ function IndividualArticle() {
       return { ...existingArticle, votes: existingArticle.votes + 1 };
     });
   };
+
+  if (errorMessage) {
+    return <h1> {errorMessage}</h1>;
+  }
 
   if (article) {
     return (
@@ -80,5 +84,4 @@ function IndividualArticle() {
     );
   }
 }
-
 export default IndividualArticle;

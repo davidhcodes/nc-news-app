@@ -11,7 +11,7 @@ import {
 function Comments({ article_id, article }) {
   const { user } = useContext(UserContext);
   const [CommentsIsLoading, setCommentsIsLoading] = useState(false);
-  const [err, setErr] = useState(null);
+  const [errorMessage, setErr] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [commentIsDeleted, setCommentIsDeleted] = useState(false);
@@ -30,7 +30,7 @@ function Comments({ article_id, article }) {
         setCommentsIsLoading(false);
       })
       .catch((err) => {
-        setErr(err);
+        setErr(err.message);
         setCommentsIsLoading(false);
       });
   }, [article_id]);
@@ -77,59 +77,36 @@ function Comments({ article_id, article }) {
       (commentToDelete) => commentToDelete.comment_id !== comment_id
     );
 
+    let savedComment = {};
+
+    comments.forEach((comment) => {
+      if (commentToDelete.comment_id !== comment_id) savedComment = comment;
+    });
     try {
       deleteComment(comment_id).then(() => {
         setComments([...filtered]);
         setCommentIsDeleted(true);
       });
     } catch (err) {
-      <p>There is an issue deleting the comment </p>;
+      setComments([...filtered, savedComment]);
     }
   };
-
-  if (CommentsIsLoading) return <p> Comments are loading!...</p>;
-
-  const arrayOfComments = comments.map((comment) => {
-    return (
-      <li key={comment.comment_id} className="userList">
-        <div className="author">{comment.author}</div>
-
-        <div>{formatTime(comment.created_at)}</div>
-
-        <div key={comment.comment_id} className="comment_box">
-          <div className="text-box">
-            <p> {comment.body}</p>
-          </div>
-          <div className="interactComment">
-            <button onClick={() => incVoteComments(comment.comment_id)}>
-              ⬆️
-            </button>
-            <p>{comment.votes}</p>
-
-            {user.username === comment.author ? (
-              <p>
-                {" "}
-                <button
-                  onClick={() => {
-                    handleDeleteComment(comment.comment_id);
-                  }}
-                >
-                  Delete
-                </button>
-              </p>
-            ) : (
-              <p>{""}</p>
-            )}
-          </div>
-        </div>
-      </li>
-    );
-  });
 
   // }
   /* Here we are optimistically rendering by increasing the vote count before making a new GET request to update all the comments. */
   const incVoteComments = (comment_id) => {
-    patchComment(comment_id);
+    try {
+      patchComment(comment_id);
+    } catch {
+      setComments((existingComment) => {
+        return existingComment.map((comment) => {
+          if (comment.comment_id === comment_id) {
+            return { ...comment, votes: comment.votes - 1 };
+          }
+          return comment;
+        });
+      });
+    }
 
     setComments((existingComment) => {
       return existingComment.map((comment) => {
@@ -141,31 +118,86 @@ function Comments({ article_id, article }) {
     });
   };
 
-  return (
-    <>
-      {" "}
-      <div>
-        <h1> Comments </h1>
-        <form onSubmit={handleSubmit} className="addComment" id="addNewComment">
-          <label className="author">Add Comment</label>
-          <textarea
-            id="newComment"
-            className="inputTextComment"
-            multiline="true"
-            value={newComment}
-            onChange={(e) => {
-              setNewComment(e.target.value);
-            }}
-            required
-          ></textarea>
-          <button type="submit">Submit</button>
-        </form>
+  if (errorMessage) {
+    <h1> {errorMessage}</h1>;
+  }
+
+  if (comments.length > 1) {
+    return (
+      <>
+        {" "}
         <div>
-          <ul>{CommentsIsLoading ? <p>Loading!</p> : arrayOfComments}</ul>
+          <h1> Comments </h1>
+          <form
+            onSubmit={handleSubmit}
+            className="addComment"
+            id="addNewComment"
+          >
+            <label className="author">Add Comment</label>
+            <textarea
+              id="newComment"
+              className="inputTextComment"
+              multiline="true"
+              value={newComment}
+              onChange={(e) => {
+                setNewComment(e.target.value);
+              }}
+              required
+            ></textarea>
+            <button type="submit">Submit</button>
+          </form>
+          <div>
+            <ul>
+              {CommentsIsLoading ? (
+                <p>Loading!</p>
+              ) : (
+                comments.map((comment) => {
+                  return (
+                    <li key={comment.comment_id} className="userList">
+                      <div className="author">{comment.author}</div>
+
+                      <div>{formatTime(comment.created_at)}</div>
+
+                      <div key={comment.comment_id} className="comment_box">
+                        <div className="text-box">
+                          <p> {comment.body}</p>
+                        </div>
+                        <div className="interactComment">
+                          <button
+                            onClick={() => incVoteComments(comment.comment_id)}
+                          >
+                            ⬆️
+                          </button>
+                          <p>{comment.votes}</p>
+
+                          {user.username === comment.author ? (
+                            <p>
+                              {" "}
+                              <button
+                                onClick={() => {
+                                  handleDeleteComment(comment.comment_id);
+                                }}
+                              >
+                                Delete
+                              </button>
+                            </p>
+                          ) : (
+                            <p>{""}</p>
+                          )}
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })
+              )}
+            </ul>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  } else {
+    <p> Comments is not existing </p>;
+  }
 }
 
 export default Comments;
