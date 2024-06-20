@@ -33,7 +33,3 @@ function Header() {
 }
 
 export default Header;
-
-{
-  /* <button className="">🏡</button> */
-}

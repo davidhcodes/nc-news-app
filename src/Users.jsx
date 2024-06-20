@@ -48,7 +48,6 @@ function Users({ setIsLoggedIn }) {
           );
         })}
       </ul>
-      {/* </body> */}
     </>
   );
 }

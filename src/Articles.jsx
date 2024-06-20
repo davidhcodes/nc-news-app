@@ -1,4 +1,3 @@
-// import { all } from "axios";
 import { getArticles } from "../utils/api";
 import moment from "moment";
 import { useEffect, useState, useParams, useContext } from "react";
@@ -12,7 +11,6 @@ import { UserContext } from "./contexts/UserContext";
 import { Link } from "react-router-dom";
 import Header from "./Header";
 import IndividualArticle from "./IndividualArticle";
-// import { search } from "../../be-nc-news/routes/users-router";
 
 function Articles({ topics }) {
   const { user } = useContext(UserContext);
@@ -22,8 +20,8 @@ function Articles({ topics }) {
   const [filter, setFilter] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortSelected, setSortSelected] = useState(false);
-  const sortByQuery = searchParams.get("sort_by"); // "average_weight"
-  const orderQuery = searchParams.get("order"); // "asc
+  const sortByQuery = searchParams.get("sort_by");
+  const orderQuery = searchParams.get("order");
   const topic = searchParams.get("topic");
 
   useEffect(() => {
@@ -106,7 +104,6 @@ function Articles({ topics }) {
     // set the order query
     newParams.set("order", direction);
     setSearchParams(newParams);
-    // }
   };
 
   const handleFilter = (event) => {
