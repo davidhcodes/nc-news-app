@@ -19,6 +19,7 @@ function Articles({ topics }) {
   const [articles, setArticles] = useState([]);
   const [filter, setFilter] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [sortSelected, setSortSelected] = useState(false);
   const sortByQuery = searchParams.get("sort_by"); // "average_weight"
   const orderQuery = searchParams.get("order"); // "asc
   const topic = searchParams.get("topic");
@@ -72,9 +73,12 @@ function Articles({ topics }) {
   const arrayOfTopics = topics.map((topic) => {
     return (
       <li className="userList" key={topic.slug}>
-        <button className="topicsButtons" onClick={handleClick}>
+        <Link className="link" to={`/articles?topic=${topic.slug}`}>
+          <button className="topicsButtons"> {topic.slug}</button>
+        </Link>
+        {/* <button className="topicsButtons" onClick={handleClick}>
           {topic.slug}
-        </button>
+        </button> */}
       </li>
     );
   });
@@ -101,11 +105,25 @@ function Articles({ topics }) {
     );
   });
 
-  const setSortOrder = (direction) => {
+  const setSortOrder = (event) => {
+    const direction = event.target.value;
+
+    // if (sortSelected) {
+    console.log(direction);
     // copy existing queries to avoid mutation
     const newParams = new URLSearchParams(searchParams);
     // set the order query
     newParams.set("order", direction);
+    setSearchParams(newParams);
+    // }
+  };
+
+  const handleFilter = (event) => {
+    const sort_by = event.target.value;
+
+    const newParams = new URLSearchParams(searchParams);
+    // set the order query
+    newParams.set("sort_by", sort_by);
     setSearchParams(newParams);
   };
 
@@ -127,9 +145,26 @@ function Articles({ topics }) {
         <div className="filterButtons">
           {" "}
           <h2>Placeholder for filtering buttons </h2>
-          <Link className="link" to={`/articles?sort_by=author`}>
-            <button onClick={() => setSortOrder("DESC")}>Sort By Author</button>
+          <Link className="link" to={`/articles?sort_by=created_at`}>
+            <button className="filterButtons" onClick={handleFilter}>
+              Date
+            </button>
           </Link>
+          <Link className="link" to={`/articles?sort_by=comment_count`}>
+            <button className="filterButtons" onClick={handleFilter}>
+              Number of comments
+            </button>
+          </Link>
+          <Link className="link" to={`/articles?sort_by=votes`}>
+            <button className="filterButtons" onClick={handleFilter}>
+              Sort By Votes
+            </button>
+          </Link>
+          <select onChange={setSortOrder}>
+            <option value={""}> Order by ...</option>
+            <option value={"ASC"}> ASC</option>
+            <option value={"DESC"}> DESC</option>
+          </select>
         </div>
         <div className="articles-container">
           <div>

@@ -5,12 +5,6 @@ function Topics({ topics }) {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState(null);
 
-  const handleTopics = (topic) => {
-    <Link className="link" to={`/articles?${topic.slug}`}>
-      <button className="">Read more</button>
-    </Link>;
-  };
-
   const arrayOfTopics = topics.map((topic) => {
     return (
       <li className="userList" key={topic.slug}>
@@ -18,9 +12,6 @@ function Topics({ topics }) {
           <button className="topicsPageButtons"> {topic.slug}</button>
         </Link>
         ;
-        {/* <button className="topicsPageButtons" onClick={""}>
-          {topic.slug}
-        </button> */}
       </li>
     );
   });

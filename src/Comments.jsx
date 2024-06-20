@@ -14,6 +14,7 @@ function Comments({ article_id, article }) {
   const [err, setErr] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const [commentIsDeleted, setCommentIsDeleted] = useState(false);
   const [isDisabled, setDisabled] = useState(false);
 
   const formatTime = (timeISO) => {
@@ -76,9 +77,14 @@ function Comments({ article_id, article }) {
       (commentToDelete) => commentToDelete.comment_id !== comment_id
     );
 
-    deleteComment(comment_id).then(() => {
-      setComments([...filtered]);
-    });
+    try {
+      deleteComment(comment_id).then(() => {
+        setComments([...filtered]);
+        setCommentIsDeleted(true);
+      });
+    } catch (err) {
+      <p>There is an issue deleting the comment </p>;
+    }
   };
 
   if (CommentsIsLoading) return <p> Comments are loading!...</p>;
