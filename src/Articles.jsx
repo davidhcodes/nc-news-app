@@ -15,7 +15,7 @@ import IndividualArticle from "./IndividualArticle";
 function Articles({ topics }) {
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
-  const [err, setErr] = useState(null);
+  const [errorMessage, setErr] = useState(null);
   const [articles, setArticles] = useState([]);
   const [filter, setFilter] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -35,7 +35,7 @@ function Articles({ topics }) {
           setIsLoading(false);
         })
         .catch((err) => {
-          setErr(err);
+          setErr(err.message);
           setIsLoading(false);
         });
     } else {
@@ -45,7 +45,8 @@ function Articles({ topics }) {
           setIsLoading(false);
         })
         .catch((err) => {
-          setErr(err);
+          console.log(err);
+          setErr(err.message);
           setIsLoading(false);
         });
     }
@@ -114,6 +115,10 @@ function Articles({ topics }) {
     newParams.set("sort_by", sort_by);
     setSearchParams(newParams);
   };
+
+  if (errorMessage) {
+    return <h1> {errorMessage}</h1>;
+  }
 
   return (
     <>
