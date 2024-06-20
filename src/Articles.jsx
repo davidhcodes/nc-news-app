@@ -1,19 +1,21 @@
 // import { all } from "axios";
 import { getArticles } from "../utils/api";
 import moment from "moment";
-import { useEffect, useState, useParams } from "react";
+import { useEffect, useState, useParams, useContext } from "react";
 import {
   BrowserRouter,
   Routes,
   Route,
   useSearchParams,
 } from "react-router-dom";
+import { UserContext } from "./contexts/UserContext";
 import { Link } from "react-router-dom";
 import Header from "./Header";
 import IndividualArticle from "./IndividualArticle";
 // import { search } from "../../be-nc-news/routes/users-router";
 
 function Articles({ topics }) {
+  const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState(null);
   const [articles, setArticles] = useState([]);
@@ -136,7 +138,6 @@ function Articles({ topics }) {
         </div>
         <div className="filterButtons">
           {" "}
-          <h2>Placeholder for filtering buttons </h2>
           <Link className="link" to={`/articles?sort_by=created_at`}>
             <button className="filterButtons" onClick={handleFilter}>
               Date

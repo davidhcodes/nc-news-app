@@ -40,10 +40,14 @@ function IndividualArticle() {
 
   /* Here we are optimistically rendering by increasing the vote count before making a new GET request to update the article. */
   const incVoteArticles = (article_id) => {
-    patchArticle(article_id);
-    setArticle((existingArticle) => {
-      return { ...existingArticle, votes: existingArticle.votes + 1 };
-    });
+    if (user.username === null) {
+      alert("You must be logged in to vote on articles");
+    } else {
+      patchArticle(article_id);
+      setArticle((existingArticle) => {
+        return { ...existingArticle, votes: existingArticle.votes + 1 };
+      });
+    }
   };
 
   if (errorMessage) {

@@ -3,7 +3,7 @@ import { UserContext } from "./contexts/UserContext";
 import { getUsers } from "../utils/api";
 import Header from "./Header";
 
-function Users() {
+function Users({ setIsLoggedIn }) {
   const { user, setUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState(null);

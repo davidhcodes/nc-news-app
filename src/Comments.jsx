@@ -80,7 +80,7 @@ function Comments({ article_id, article }) {
     let savedComment = {};
 
     comments.forEach((comment) => {
-      if (commentToDelete.comment_id !== comment_id) savedComment = comment;
+      if (comment.comment_id !== comment_id) savedComment = comment;
     });
     try {
       deleteComment(comment_id).then(() => {
@@ -92,22 +92,24 @@ function Comments({ article_id, article }) {
     }
   };
 
-  // }
   /* Here we are optimistically rendering by increasing the vote count before making a new GET request to update all the comments. */
   const incVoteComments = (comment_id) => {
-    try {
-      patchComment(comment_id);
-    } catch {
-      setComments((existingComment) => {
-        return existingComment.map((comment) => {
-          if (comment.comment_id === comment_id) {
-            return { ...comment, votes: comment.votes - 1 };
-          }
-          return comment;
+    if (user.username === null) {
+      alert("You must be logged in to vote on comments");
+    } else {
+      try {
+        patchComment(comment_id);
+      } catch {
+        setComments((existingComment) => {
+          return existingComment.map((comment) => {
+            if (comment.comment_id === comment_id) {
+              return { ...comment, votes: comment.votes - 1 };
+            }
+            return comment;
+          });
         });
-      });
+      }
     }
-
     setComments((existingComment) => {
       return existingComment.map((comment) => {
         if (comment.comment_id === comment_id) {

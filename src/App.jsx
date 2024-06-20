@@ -13,6 +13,7 @@ function App() {
   const [topics, setTopics] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -33,7 +34,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/users" element={<Users />} />
+          <Route
+            path="/users"
+            element={<Users setIsLoggedIn={setIsLoggedIn} />}
+          />
           <Route path="/topics" element={<Topics topics={topics} />} />
           <Route path="/articles" element={<Articles topics={topics} />} />
           <Route path="/articles/:article_id" element={<IndividualArticle />} />
