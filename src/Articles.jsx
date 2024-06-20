@@ -72,9 +72,6 @@ function Articles({ topics }) {
         <Link className="link" to={`/articles?topic=${topic.slug}`}>
           <button className="topicsButtons"> {topic.slug}</button>
         </Link>
-        {/* <button className="topicsButtons" onClick={handleClick}>
-          {topic.slug}
-        </button> */}
       </li>
     );
   });
@@ -125,11 +122,7 @@ function Articles({ topics }) {
     <>
       <Header />
       <div className="pageContainer">
-        <header></header>
-
         <h1> Articles </h1>
-        {/* <button onClick={<IndividualArticle />}>Individual article</button> */}
-
         <div className="topicsList">
           {isLoading ? <p>Loading!</p> : arrayOfTopics}
           <button className="topicsButtons" onClick={handleClick}>
