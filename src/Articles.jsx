@@ -24,12 +24,6 @@ function Articles({ topics }) {
   const orderQuery = searchParams.get("order"); // "asc
   const topic = searchParams.get("topic");
 
-  // if (topic == null) {
-  //   setFilter(topic);
-  // }
-  console.log(searchParams);
-  console.log(topic);
-
   useEffect(() => {
     setIsLoading(true);
 
@@ -108,8 +102,6 @@ function Articles({ topics }) {
   const setSortOrder = (event) => {
     const direction = event.target.value;
 
-    // if (sortSelected) {
-    console.log(direction);
     // copy existing queries to avoid mutation
     const newParams = new URLSearchParams(searchParams);
     // set the order query

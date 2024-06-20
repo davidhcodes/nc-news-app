@@ -9,6 +9,7 @@ export const getArticles = (topic, sort_by, order_by)=>{
 
         return data.articles
     })
+
 }
 
 
@@ -18,6 +19,7 @@ export const getArticleByID = (article_id)=>{
 
         return data[0]
     })
+    
 }
 
 export const getCommentsByArticleID = (article_id)=>{
@@ -32,6 +34,7 @@ export const getTopics = ()=>{
             .then(({data})=>{
         return data.topics
     })
+
 }
 
 
@@ -41,6 +44,7 @@ export const getUsers = ()=>{
             .then(({data})=>{
         return data.user_data
     })
+
 }
 
 
