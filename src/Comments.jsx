@@ -132,7 +132,7 @@ function Comments({ article_id, article }) {
           <h1> Comments </h1>
           <form
             onSubmit={handleSubmit}
-            className="addComment"
+            className="flex mb-10"
             id="addNewComment"
           >
             <label className="author">Add Comment</label>

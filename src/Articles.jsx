@@ -144,7 +144,11 @@ function Articles({ topics }) {
                 alt="Comments"
               />
               <p className="text-black">{article.comment_count}</p>
-              <img className="h-4 w-15  " src={upvote} alt="Comments" />
+              <img
+                className="h-4 w-15  "
+                src={upvote}
+                alt="Upvote the article"
+              />
               <p className="-ml-2 mr-10 text-black"> {article.votes}</p>
               <p className="text-black font-light">
                 {formatTime(article.created_at)}
@@ -158,10 +162,13 @@ function Articles({ topics }) {
 
   const secondaryArticles = articles.map((article) => {
     return (
-      <li key={article.article_id}>
-        <div className="container flex flex-col bg-white ">
-          <div className="bg-slate-100 flex-col">
-            <Link className="link" to={`/articles/${article.article_id}`}>
+      <li key={article.article_id} className="bg-white  w-full h-full">
+        <div className="container flex flex-col w-full h-full">
+          <div className="bg-slate-100 flex-col h-full">
+            <Link
+              className="link w-full h-full "
+              to={`/articles/${article.article_id}`}
+            >
               <img
                 className="h-50 w-100"
                 src={article.article_img_url}
@@ -173,25 +180,26 @@ function Articles({ topics }) {
               <h3 className="text-purple-900 text-left font-TimesNew text-xxs capitalize font-semibold">
                 {article.topic}
               </h3>
-
               <h4 className="text-purple-900 text-left font-TimesNew text-xxs capitalize font-light ">
                 {article.author}
               </h4>
-              <div className="mt-auto ">
-                <div className=" flex text-xs bottom-0">
-                  <img
-                    className="h-2 w-2 mt-1 mr-1"
-                    src={comments_symbol}
-                    alt="Comments"
-                  />
-                  <p className="text-black">{article.comment_count}</p>
-                  <img
-                    className="h-3 w-7 mt-0.5 "
-                    src={upvote}
-                    alt="Comments"
-                  />
-                  <p className="-ml-2 mr-10  text-black"> {article.votes}</p>
-                  <p className="text-black font-light text-xxs">
+              <div className=" flex text-xs mt-auto  ">
+                <img
+                  className="h-2 w-2 mt-1 mr-1"
+                  src={comments_symbol}
+                  alt="Comments"
+                />
+                <p className="text-black">{article.comment_count}</p>
+                <img
+                  className="h-3 w-7 mt-0.5 "
+                  src={upvote}
+                  alt="Upvote the article"
+                />
+                <p className="  text-black"> {article.votes}</p>
+              </div>
+              <div className="flex ">
+                <div className="mt-2 text-black text-xs text-bottom ">
+                  <p className="text-black text-xxs font-TimesNew font-light">
                     {formatShortTime(article.created_at)}
                   </p>
                 </div>
@@ -209,13 +217,13 @@ function Articles({ topics }) {
         <div className="container flex flex-col bg-white ">
           <div className="bg-slate-100 flex-col">
             <Link className="link" to={`/articles/${article.article_id}`}>
-              <div className="flex py-1">
+              <div className="flex ">
                 <img
                   className="h-10 w-50 float-left mr-2"
                   src={article.article_img_url}
                   alt="Secondary article image"
                 />
-                <div className="float-right">
+                <div className="float-right ">
                   <h3 className="text-black text-left font-TimesNew text-xs capitalize font-semibold ">
                     {article.title}
                   </h3>
@@ -226,6 +234,7 @@ function Articles({ topics }) {
                     <h4 className="text-purple-900  font-TimesNew text-xxs capitalize font-light mr-5 ">
                       {article.author}{" "}
                     </h4>
+
                     <div className=" flex text-xs ">
                       <img
                         className="h-2 w-2 mt-1 mr-1"
@@ -236,18 +245,18 @@ function Articles({ topics }) {
                       <img
                         className="h-3 w-7 mt-0.5 "
                         src={upvote}
-                        alt="Comments"
+                        alt="Upvote the article"
                       />
                       <p className="-ml-2 mr-10  text-black">
                         {" "}
                         {article.votes}
                       </p>
+                      <p className="text-black  font-light text-xxs absolute right-0 mr-7 ">
+                        {formatShortTime(article.created_at)}
+                      </p>
                     </div>
                   </div>
                 </div>
-                <p className="text-black  font-light text-xxs  my-5 float-right">
-                  {formatShortTime(article.created_at)}
-                </p>
               </div>
 
               <div className="mt-auto ">
@@ -314,9 +323,9 @@ function Articles({ topics }) {
 
   return (
     <body>
-      <div className="container m-auto grid grid-rows-20 grid-cols-2 gap-2 md:grid-rows-20 md:grid-cols-5-w-full">
-        <div className="tile bg-purple-900 col-span-2  md:col-span-5">
-          <h1 className="text-white">HG News </h1>
+      <div className=" m-auto grid grid-rows-20 grid-cols-2 gap-2 md:grid-rows-20 md:grid-cols-5-w-full">
+        <div className="tile bg-purple-900 col-span-2 w-full  md:col-span-5">
+          <h1 className="text-white w-full  ">HG News </h1>
         </div>
         <div className="tile bg-amber-500 row-start-2 row-end-10 col-span-2 md:row-start-2 md:row-end-10 md:col-span-5 ">
           {/* <h1 className="tile-marker"> */}{" "}
@@ -324,13 +333,22 @@ function Articles({ topics }) {
           {/* {console.log(mostPopularArticles)} */}
           {/* </h1>{" "} */}
         </div>
-        <div className="tile bg-purple-600 row-start-10 row-end-30 h-full col-span-1">
-          {/* <h1>THREE</h1> // Article 2nd */}
-          {isLoading ? <p>Loading!</p> : <ul>{secondaryArticles[1]}</ul>}
+        <div className="tile bg-purple-600 row-start-10 row-end-32 col-span-1 w-full h-full">
+          {isLoading ? (
+            <p>Loading!</p>
+          ) : (
+            <ul className="w-full h-full">{secondaryArticles[1]}</ul>
+          )}
         </div>
-        <div className="tile bg-emerald-600 row-start-10 row-end-20 col-span-1">
-          {isLoading ? <p>Loading!</p> : <ul>{secondaryArticles[2]}</ul>}
+
+        <div className="tile bg-emerald-600 row-start-10 row-end-20 col-span-1 w-full h-full">
+          {isLoading ? (
+            <p>Loading!</p>
+          ) : (
+            <ul className="w-full h-full">{secondaryArticles[2]}</ul>
+          )}
         </div>
+
         <div className="tile bg-pink-600 row-start-11 row-end-20 col-span-2">
           {isLoading ? <p>Loading!</p> : <ul>{tertiaryArticles}</ul>}
         </div>
