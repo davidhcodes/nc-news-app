@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -257,7 +261,8 @@ height: 2rem;
   
 
 .userList{
-  list-style: none;
+  list-style-type: none;
+  /* semicolons: false; */
 }
  
 
@@ -370,6 +375,8 @@ height: 5rem;
 width: 10rem;
 margin-bottom: 1rem;
 margin-left:0.1rem;
+margin-top: 1rem;
+color: white;
 }
 
 

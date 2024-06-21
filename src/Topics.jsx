@@ -6,19 +6,21 @@ function Topics({ topics }) {
   const [err, setErr] = useState(null);
 
   const arrayOfTopics = topics.map((topic) => {
+    {
+      console.log(topic.slug);
+    }
     return (
       <li className="userList" key={topic.slug}>
         <Link className="link" to={`/articles?topic=${topic.slug}`}>
-          <button className="topicsPageButtons"> {topic.slug}</button>
+          <button className="topicsPageButtons">{topic.slug}</button>
         </Link>
-        ;
       </li>
     );
   });
   return (
     <>
       <Header />
-      <h1> These are our topics</h1>
+      <h1> Select a topic </h1>
       <div className="">
         {isLoading ? <p>Loading!</p> : arrayOfTopics}
         <button className="topicsPageButtons" onClick={""}>

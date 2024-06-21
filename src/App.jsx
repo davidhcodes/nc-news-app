@@ -4,6 +4,7 @@ import Homepage from "./Homepage";
 import Articles from "./Articles";
 import Topics from "./Topics";
 import Users from "./Users";
+import Error from "./Error";
 import { getTopics } from "../utils/api";
 import "./App.css";
 import IndividualArticle from "./IndividualArticle";
@@ -34,6 +35,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/*" element={<Error />} />
           <Route
             path="/users"
             element={<Users setIsLoggedIn={setIsLoggedIn} />}

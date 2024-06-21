@@ -12,11 +12,16 @@ import { Link } from "react-router-dom";
 import Header from "./Header";
 import IndividualArticle from "./IndividualArticle";
 
+/* Required symbols. */
+import comments_symbol from "./assets/comment-symbol.png";
+import upvote from "./assets/upvotearrow_nobackground.png";
+
 function Articles({ topics }) {
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
-  const [err, setErr] = useState(null);
+  const [errorMessage, setErr] = useState(null);
   const [articles, setArticles] = useState([]);
+  const [mostPopularArticles, setMostPopularArticles] = useState([]);
   const [filter, setFilter] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortSelected, setSortSelected] = useState(false);
@@ -33,19 +38,22 @@ function Articles({ topics }) {
         .then((allArticles) => {
           setArticles(allArticles);
           setIsLoading(false);
+          mostVotes();
         })
         .catch((err) => {
-          setErr(err);
+          setErr(err.message);
           setIsLoading(false);
         });
     } else {
       getArticles(filter, sortByQuery, orderQuery)
         .then((allArticles) => {
           setArticles(allArticles);
+          mostVotes();
           setIsLoading(false);
         })
         .catch((err) => {
-          setErr(err);
+          console.log(err);
+          setErr(err.message);
           setIsLoading(false);
         });
     }
@@ -53,6 +61,19 @@ function Articles({ topics }) {
 
   const formatTime = (timeISO) => {
     const newTime = moment(timeISO).format("dddd, MMMM Do YYYY, h:mm a");
+    return newTime;
+  };
+  function handleClick(event) {
+    let selectedTopic = event.target.innerHTML;
+    if (selectedTopic === "All") {
+      setFilter(null);
+    } else {
+      setFilter(selectedTopic);
+    }
+  }
+
+  const formatShortTime = (timeISO) => {
+    const newTime = moment(timeISO).format("ll");
     return newTime;
   };
   function handleClick(event) {
@@ -96,6 +117,162 @@ function Articles({ topics }) {
     );
   });
 
+  const mainArticleArray = articles.map((article) => {
+    return (
+      <li key={article.article_id}>
+        <div className="bg-slate-100">
+          <Link className="link" to={`/articles/${article.article_id}`}>
+            <img
+              className="max-w-wd"
+              src={article.article_img_url}
+              alt="Main news article image"
+            />
+            <h3 className="text-purple-900 text-left font-TimesNew text-2xl capitalize font-semibold">
+              {article.topic}{" "}
+            </h3>
+            <h1 className="font-semibold text-2xl text-justify font-TimesNew text-black">
+              {" "}
+              {article.title}
+            </h1>
+            <h4 className="text-purple-900 text-left font-TimesNew text-sm capitalize font-light ">
+              {article.author}
+            </h4>
+            <div className="flex text-xs">
+              <img
+                className="h-4 w-4 mt-0.5 mr-1"
+                src={comments_symbol}
+                alt="Comments"
+              />
+              <p className="text-black">{article.comment_count}</p>
+              <img className="h-4 w-15  " src={upvote} alt="Comments" />
+              <p className="-ml-2 mr-10 text-black"> {article.votes}</p>
+              <p className="text-black font-light">
+                {formatTime(article.created_at)}
+              </p>
+            </div>
+          </Link>
+        </div>
+      </li>
+    );
+  });
+
+  const secondaryArticles = articles.map((article) => {
+    return (
+      <li key={article.article_id}>
+        <div className="container flex flex-col bg-white ">
+          <div className="bg-slate-100 flex-col">
+            <Link className="link" to={`/articles/${article.article_id}`}>
+              <img
+                className="h-50 w-100"
+                src={article.article_img_url}
+                alt="Secondary article image"
+              />
+              <h3 className="text-black text-left font-TimesNew text-xs capitalize font-semibold">
+                {article.title}
+              </h3>
+              <h3 className="text-purple-900 text-left font-TimesNew text-xxs capitalize font-semibold">
+                {article.topic}
+              </h3>
+
+              <h4 className="text-purple-900 text-left font-TimesNew text-xxs capitalize font-light ">
+                {article.author}
+              </h4>
+              <div className="mt-auto ">
+                <div className=" flex text-xs bottom-0">
+                  <img
+                    className="h-2 w-2 mt-1 mr-1"
+                    src={comments_symbol}
+                    alt="Comments"
+                  />
+                  <p className="text-black">{article.comment_count}</p>
+                  <img
+                    className="h-3 w-7 mt-0.5 "
+                    src={upvote}
+                    alt="Comments"
+                  />
+                  <p className="-ml-2 mr-10  text-black"> {article.votes}</p>
+                  <p className="text-black font-light text-xxs">
+                    {formatShortTime(article.created_at)}
+                  </p>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </li>
+    );
+  });
+
+  const tertiaryArticles = articles.map((article) => {
+    return (
+      <li key={article.article_id}>
+        <div className="container flex flex-col bg-white ">
+          <div className="bg-slate-100 flex-col">
+            <Link className="link" to={`/articles/${article.article_id}`}>
+              <div className="flex py-1">
+                <img
+                  className="h-10 w-50 float-left mr-2"
+                  src={article.article_img_url}
+                  alt="Secondary article image"
+                />
+                <div className="float-right">
+                  <h3 className="text-black text-left font-TimesNew text-xs capitalize font-semibold ">
+                    {article.title}
+                  </h3>
+                  <h3 className="text-purple-900 text-left font-TimesNew text-xxs capitalize font-semibold">
+                    {article.topic}
+                  </h3>
+                  <div className="flex">
+                    <h4 className="text-purple-900  font-TimesNew text-xxs capitalize font-light mr-5 ">
+                      {article.author}{" "}
+                    </h4>
+                    <div className=" flex text-xs ">
+                      <img
+                        className="h-2 w-2 mt-1 mr-1"
+                        src={comments_symbol}
+                        alt="Comments"
+                      />
+                      <p className="text-black">{article.comment_count}</p>
+                      <img
+                        className="h-3 w-7 mt-0.5 "
+                        src={upvote}
+                        alt="Comments"
+                      />
+                      <p className="-ml-2 mr-10  text-black">
+                        {" "}
+                        {article.votes}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-black  font-light text-xxs  my-5 float-right">
+                  {formatShortTime(article.created_at)}
+                </p>
+              </div>
+
+              <div className="mt-auto ">
+                {/* <div className=" flex text-xs ">
+                  <img
+                    className="h-2 w-2 mt-1 mr-1"
+                    src={comments_symbol}
+                    alt="Comments"
+                  />
+                  <p className="text-black">{article.comment_count}</p>
+                  <img
+                    className="h-3 w-7 mt-0.5 "
+                    src={upvote}
+                    alt="Comments"
+                  />
+                  <p className="-ml-2 mr-10  text-black"> {article.votes}</p>
+                </div> */}
+              </div>
+            </Link>
+          </div>
+        </div>
+      </li>
+    );
+  });
+
   const setSortOrder = (event) => {
     const direction = event.target.value;
 
@@ -115,49 +292,50 @@ function Articles({ topics }) {
     setSearchParams(newParams);
   };
 
+  if (errorMessage) {
+    return <h1> {errorMessage}</h1>;
+  }
+
+  const mostVotes = () => {
+    let articlesCopy = [...articles];
+
+    if (articlesCopy.length > 1) {
+      articlesCopy.sort((a, b) => b.votes - a.votes);
+
+      setMostPopularArticles([
+        articlesCopy[0],
+        articlesCopy[1],
+        articlesCopy[2],
+      ]);
+    }
+  };
+
+  // mostVotes();
+
   return (
-    <>
-      <Header />
-      <div className="pageContainer">
-        <h1> Articles </h1>
-        <div className="topicsList">
-          {isLoading ? <p>Loading!</p> : arrayOfTopics}
-          <button className="topicsButtons" onClick={handleClick}>
-            All
-          </button>
+    <body>
+      <div className="container m-auto grid grid-rows-20 grid-cols-2 gap-2 md:grid-rows-20 md:grid-cols-5-w-full">
+        <div className="tile bg-purple-900 col-span-2  md:col-span-5">
+          <h1 className="text-white">HG News </h1>
         </div>
-        <div className="filterButtons">
-          {" "}
-          <Link className="link" to={`/articles?sort_by=created_at`}>
-            <button className="filterButtons" onClick={handleFilter}>
-              Date
-            </button>
-          </Link>
-          <Link className="link" to={`/articles?sort_by=comment_count`}>
-            <button className="filterButtons" onClick={handleFilter}>
-              Number of comments
-            </button>
-          </Link>
-          <Link className="link" to={`/articles?sort_by=votes`}>
-            <button className="filterButtons" onClick={handleFilter}>
-              Sort By Votes
-            </button>
-          </Link>
-          <select onChange={setSortOrder}>
-            <option value={""}> Order by ...</option>
-            <option value={"asc"}> ASC</option>
-            <option value={"desc"}> DESC</option>
-          </select>
+        <div className="tile bg-amber-500 row-start-2 row-end-10 col-span-2 md:row-start-2 md:row-end-10 md:col-span-5 ">
+          {/* <h1 className="tile-marker"> */}{" "}
+          {isLoading ? <p>Loading!</p> : <ul>{mainArticleArray[0]}</ul>}
+          {/* {console.log(mostPopularArticles)} */}
+          {/* </h1>{" "} */}
         </div>
-        <div className="articles-container">
-          <div>
-            <ul className="userList">
-              {isLoading ? <p>Loading!</p> : arrayOfArticles}
-            </ul>
-          </div>
+        <div className="tile bg-purple-600 row-start-10 row-end-30 h-full col-span-1">
+          {/* <h1>THREE</h1> // Article 2nd */}
+          {isLoading ? <p>Loading!</p> : <ul>{secondaryArticles[1]}</ul>}
+        </div>
+        <div className="tile bg-emerald-600 row-start-10 row-end-20 col-span-1">
+          {isLoading ? <p>Loading!</p> : <ul>{secondaryArticles[2]}</ul>}
+        </div>
+        <div className="tile bg-pink-600 row-start-11 row-end-20 col-span-2">
+          {isLoading ? <p>Loading!</p> : <ul>{tertiaryArticles}</ul>}
         </div>
       </div>
-    </>
+    </body>
   );
 }
 
