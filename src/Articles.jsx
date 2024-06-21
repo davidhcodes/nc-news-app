@@ -305,6 +305,7 @@ function Articles({ topics }) {
     return <h1> {errorMessage}</h1>;
   }
 
+
   const mostVotes = () => {
     let articlesCopy = [...articles];
 
