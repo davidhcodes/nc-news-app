@@ -87,17 +87,18 @@ function IndividualArticle() {
               <p className="text-xxs">{formatTime(article.created_at)}</p>
               {/* </div> */}
               <button
-                className="ml-5"
+                className="ml-5 flex justify-center items-center flex-col h-4 p-0"
                 onClick={() => incVoteArticles(article.article_id)}
               >
-                <img
+                <p className="text-2xl text-purple-900  ">⬆</p>
+                {/* <img
                   className="h-5 w-8 "
                   src={upvote}
                   alt="Upvote the article"
-                />
+                /> */}
               </button>
 
-              <p className="text-xxs -ml-10 mt-3">{article.votes}</p>
+              <p className="text-xxs -ml-10 mb-1">{article.votes}</p>
             </div>
           </div>
           <div className="tile bg-slate-100 row-start-35 row-end-60 col-span-2">
@@ -106,12 +107,12 @@ function IndividualArticle() {
             </div>
           </div>
           {/* <div className="tile bg-purple-600 row-start-10 row-end-30 col-span-2"> */}
-          <div className="tile bg-pink-600 row-start-60 row-end-80 col-span-2">
+          <div className="tile bg-slate-200 row-start-60 row-end-80 col-span-2 mt-5">
             <Comments article_id={article_id} article={article} />
           </div>
           {/* <div className="tile bg-pink-600 row-start-60 row-end-70 col-span-2"></div>
           {/* </div> */}
-          <Comments article_id={article_id} article={article} />
+          {/* <Comments article_id={article_id} article={article} /> */}
         </div>
       </body>
     );

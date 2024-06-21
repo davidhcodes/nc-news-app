@@ -129,16 +129,16 @@ function Comments({ article_id, article }) {
       <>
         {" "}
         <div>
-          <h1> Comments </h1>
+          <h1 className="font-TimesNew mb-3 text-purple-900"> Comments </h1>
           <form
             onSubmit={handleSubmit}
             className="flex mb-10"
             id="addNewComment"
           >
-            <label className="author">Add Comment</label>
+            <label className="font-bold mr-2">Add Comment</label>
             <textarea
               id="newComment"
-              className="inputTextComment"
+              className="bg-white text-black resize-none "
               multiline="true"
               value={newComment}
               onChange={(e) => {
@@ -146,7 +146,9 @@ function Comments({ article_id, article }) {
               }}
               required
             ></textarea>
-            <button type="submit">Submit</button>
+            <button className=" flex h-10  mt-1" type="submit">
+              <p className="text-sm">Submit</p>
+            </button>
           </form>
           <div>
             <ul>
@@ -155,20 +157,27 @@ function Comments({ article_id, article }) {
               ) : (
                 comments.map((comment) => {
                   return (
-                    <li key={comment.comment_id} className="userList">
-                      <div className="author">{comment.author}</div>
+                    <li
+                      key={comment.comment_id}
+                      className="list-style-type-none mt-4"
+                    >
+                      <div className="font-bold capitalize text-sm font-TimesNew">
+                        {comment.author}
+                      </div>
 
-                      <div>{formatTime(comment.created_at)}</div>
+                      <div className="font-TimesNew text-xs">
+                        {formatTime(comment.created_at)}
+                      </div>
 
-                      <div key={comment.comment_id} className="comment_box">
-                        <div className="text-box">
+                      <div key={comment.comment_id} className="mr-1 ml-1">
+                        <div className="bg-white flex text-left font-TimesNew">
                           <p> {comment.body}</p>
                         </div>
-                        <div className="interactComment">
+                        <div className="bg-violet-300  mb-0 flex">
                           <button
                             onClick={() => incVoteComments(comment.comment_id)}
                           >
-                            ⬆️
+                            <p> ⬆️</p>
                           </button>
                           <p>{comment.votes}</p>
 

@@ -322,38 +322,43 @@ function Articles({ topics }) {
   // mostVotes();
 
   return (
-    <body>
-      <div className=" m-auto grid grid-rows-20 grid-cols-2 gap-2 md:grid-rows-20 md:grid-cols-5-w-full">
-        <div className="tile bg-purple-900 col-span-2 w-full  md:col-span-5">
-          <h1 className="text-white w-full  ">HG News </h1>
-        </div>
-        <div className="tile bg-amber-500 row-start-2 row-end-10 col-span-2 md:row-start-2 md:row-end-10 md:col-span-5 ">
-          {/* <h1 className="tile-marker"> */}{" "}
-          {isLoading ? <p>Loading!</p> : <ul>{mainArticleArray[0]}</ul>}
-          {/* {console.log(mostPopularArticles)} */}
-          {/* </h1>{" "} */}
-        </div>
-        <div className="tile bg-purple-600 row-start-10 row-end-32 col-span-1 w-full h-full">
-          {isLoading ? (
-            <p>Loading!</p>
-          ) : (
-            <ul className="w-full h-full">{secondaryArticles[1]}</ul>
-          )}
-        </div>
+    <>
+      <header className="w-full px-30">
+        {/* <h1 className="text-white bg-purple-900 w-full  ">Header </h1> */}
+      </header>
+      <body>
+        <div className=" m-auto grid grid-rows-20 grid-cols-2 gap-2 md:grid-rows-20 md:grid-cols-5-w-full">
+          <div className="tile bg-purple-900 col-span-2 w-full  md:col-span-5">
+            <h1 className="text-white w-full  ">HG News </h1>
+          </div>
+          <div className="tile bg-amber-500 row-start-2 row-end-10 col-span-2 md:row-start-2 md:row-end-10 md:col-span-5 ">
+            {/* <h1 className="tile-marker"> */}{" "}
+            {isLoading ? <p>Loading!</p> : <ul>{mainArticleArray[0]}</ul>}
+            {/* {console.log(mostPopularArticles)} */}
+            {/* </h1>{" "} */}
+          </div>
+          <div className="tile bg-purple-600 row-start-10 row-end-32 col-span-1 w-full h-full">
+            {isLoading ? (
+              <p>Loading!</p>
+            ) : (
+              <ul className="w-full h-full">{secondaryArticles[1]}</ul>
+            )}
+          </div>
 
-        <div className="tile bg-emerald-600 row-start-10 row-end-20 col-span-1 w-full h-full">
-          {isLoading ? (
-            <p>Loading!</p>
-          ) : (
-            <ul className="w-full h-full">{secondaryArticles[2]}</ul>
-          )}
-        </div>
+          <div className="tile bg-emerald-600 row-start-10 row-end-20 col-span-1 w-full h-full">
+            {isLoading ? (
+              <p>Loading!</p>
+            ) : (
+              <ul className="w-full h-full">{secondaryArticles[2]}</ul>
+            )}
+          </div>
 
-        <div className="tile bg-pink-600 row-start-11 row-end-20 col-span-2">
-          {isLoading ? <p>Loading!</p> : <ul>{tertiaryArticles}</ul>}
+          <div className="tile bg-pink-600 row-start-11 row-end-20 col-span-2">
+            {isLoading ? <p>Loading!</p> : <ul>{tertiaryArticles}</ul>}
+          </div>
         </div>
-      </div>
-    </body>
+      </body>
+    </>
   );
 }
 
