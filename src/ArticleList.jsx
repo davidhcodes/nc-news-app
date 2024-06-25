@@ -16,7 +16,7 @@ import IndividualArticle from "./IndividualArticle";
 import comments_symbol from "./assets/comment-symbol.png";
 import upvote from "./assets/upvotearrow_nobackground.png";
 
-function Articles({ topics }) {
+function ArticlesList({ topics }) {
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErr] = useState(null);
@@ -211,7 +211,7 @@ function Articles({ topics }) {
     );
   });
 
-  const tertiaryArticles = articles.slice(3).map((article) => {
+  const tertiaryArticles = articles.map((article) => {
     return (
       <li key={article.article_id}>
         <div className="container flex flex-col bg-white ">
@@ -325,41 +325,43 @@ function Articles({ topics }) {
     <div>
       <header className="w-full  text-center  bg-white">
         <Header />
+        {/* <div className="filterButtons">{" "} */}
+        <Link className="link" to={`/articles?sort_by=created_at`}>
+          <button className="filterButtons" onClick={handleFilter}>
+            Date
+          </button>
+        </Link>
+        <Link className="link" to={`/articles?sort_by=comment_count`}>
+          <button className="filterButtons" onClick={handleFilter}>
+            Number of comments
+          </button>
+        </Link>
+        <Link className="link" to={`/articles?sort_by=votes`}>
+          <button className="filterButtons" onClick={handleFilter}>
+            Sort By Votes
+          </button>
+        </Link>
+        <select onChange={setSortOrder}>
+          <option value={""}> Order by ...</option>
+          <option value={"asc"}> ASC</option>
+          <option value={"desc"}> DESC</option>
+        </select>
+        {/* </div> */}
+        {/* <div className="articles-container"> */}
+        {/* <div> */}
+        <ul className="userList">
+          {isLoading ? <p>Loading!</p> : arrayOfArticles}
+        </ul>
+        <div />
       </header>
+
       <body className="px-5 py-5">
-        <div className=" m-auto grid grid-rows-20 grid-cols-2 gap-2 mb-24 bg-white min-w-full md:grid-rows-20 md:grid-cols-5-w-full ">
-          <div className="tile bg-purple-900 col-span-2 w-full  md:col-span-5">
-            {/* <h1 className="text-white w-full  font-TimesNew"> Hello </h1> */}
-          </div>
-          <div className="tile bg-amber-500 row-start-2 row-end-10 col-span-2 md:row-start-2 md:row-end-10 md:col-span-5 ">
-            {/* <h1 className="tile-marker"> */}{" "}
-            {isLoading ? <p>Loading!</p> : <ul>{mainArticleArray[0]}</ul>}
-            {/* {console.log(mostPopularArticles)} */}
-            {/* </h1>{" "} */}
-          </div>
-          <div className="tile bg-purple-600 row-start-10 row-end-32 col-span-1 w-full h-full">
-            {isLoading ? (
-              <p>Loading!</p>
-            ) : (
-              <ul className="w-full h-full">{secondaryArticles[1]}</ul>
-            )}
-          </div>
-
-          <div className="tile bg-emerald-600 row-start-10 row-end-20 col-span-1 w-full h-full">
-            {isLoading ? (
-              <p>Loading!</p>
-            ) : (
-              <ul className="w-full h-full">{secondaryArticles[2]}</ul>
-            )}
-          </div>
-
-          <div className="tile bg-pink-600 row-start-11 row-end-20 col-span-2">
-            {isLoading ? <p>Loading!</p> : <ul>{tertiaryArticles}</ul>}
-          </div>
+        <div className="tile bg-pink-600 row-start-11 row-end-20 col-span-2">
+          {isLoading ? <p>Loading!</p> : <ul>{tertiaryArticles}</ul>}
         </div>
       </body>
     </div>
   );
 }
 
-export default Articles;
+export default ArticlesList;

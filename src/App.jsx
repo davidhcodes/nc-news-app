@@ -8,6 +8,7 @@ import Error from "./Error";
 import { getTopics } from "../utils/api";
 import "./App.css";
 import IndividualArticle from "./IndividualArticle";
+import ArticlesList from "./ArticleList";
 
 function App() {
   /* The variable category is an array of all the categories we have fetched   */
@@ -34,14 +35,14 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Homepage />} />
+          <Route path="/" element={<Articles topics={topics} />} />
           <Route path="/*" element={<Error />} />
           <Route
             path="/users"
             element={<Users setIsLoggedIn={setIsLoggedIn} />}
           />
           <Route path="/topics" element={<Topics topics={topics} />} />
-          <Route path="/articles" element={<Articles topics={topics} />} />
+          <Route path="/articles" element={<ArticlesList topics={topics} />} />
           <Route path="/articles/:article_id" element={<IndividualArticle />} />
         </Routes>
       </BrowserRouter>

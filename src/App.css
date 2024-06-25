@@ -1,9 +1,15 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
+  height: 100%;
+  width:100%;
+  /* background: linear-gradient(to bottom, #6B46C1, #805AD5); */
+/* } */
+/* body{ */
+  /* background: linear-gradient(to bottom, #6B46C1, #22153f); */
+/* } */ 
 
 .logo {
   height: 6em;

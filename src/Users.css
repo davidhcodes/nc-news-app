@@ -1,0 +1,33 @@
+/* Users.css */
+.users-page {
+    height: 100vh;
+    background: linear-gradient(to bottom, #6B46C1, #805AD5); /* from-purple-900 to-purple-500 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .user-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .user-avatar {
+    height: 2.5rem;
+    margin-right: 1rem;
+  }
+  
+  .user-button {
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+  }
