@@ -128,8 +128,8 @@ function Comments({ article_id, article }) {
     return (
       <>
         {" "}
-        <div>
-          <h1 className="font-TimesNew mb-3 text-purple-900"> Comments </h1>
+        <div className="ml-2">
+          <h1 className="font-TimesNew mb-3  text-purple-900"> Comments </h1>
           <form
             onSubmit={handleSubmit}
             className="flex mb-10"
@@ -165,22 +165,24 @@ function Comments({ article_id, article }) {
                         {comment.author}
                       </div>
 
-                      <div className="font-TimesNew text-xs">
-                        {formatTime(comment.created_at)}
-                      </div>
-
                       <div key={comment.comment_id} className="mr-1 ml-1">
-                        <div className="bg-white flex text-left font-TimesNew">
+                        <div className="bg-white flex text-left font-TimesNew pb-3 pl-1">
                           <p> {comment.body}</p>
                         </div>
-                        <div className="bg-violet-300  mb-0 flex">
-                          <button
-                            onClick={() => incVoteComments(comment.comment_id)}
-                          >
-                            <p> ⬆️</p>
-                          </button>
-                          <p>{comment.votes}</p>
-
+                        <div className="bg-white mb-0 flex mt-0">
+                          <div className="font-TimesNew text-xs">
+                            {formatTime(comment.created_at)}
+                          </div>
+                          <div className="flex ml-10">
+                            <button
+                              onClick={() =>
+                                incVoteComments(comment.comment_id)
+                              }
+                            >
+                              <p className=""> ⬆️</p>
+                            </button>
+                            <p>{comment.votes}</p>
+                          </div>
                           {user.username === comment.author ? (
                             <p>
                               {" "}

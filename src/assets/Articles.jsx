@@ -149,7 +149,7 @@ function Articles({ topics }) {
                 src={upvote}
                 alt="Upvote the article"
               />
-              <p className="-ml-2 mr-12 text-black"> {article.votes}</p>
+              <p className="-ml-2 mr-10 text-black"> {article.votes}</p>
               <p className="text-black font-light">
                 {formatTime(article.created_at)}
               </p>
@@ -211,7 +211,7 @@ function Articles({ topics }) {
     );
   });
 
-  const tertiaryArticles = articles.slice(3).map((article) => {
+  const tertiaryArticles = articles.map((article) => {
     return (
       <li key={article.article_id}>
         <div className="container flex flex-col bg-white ">
@@ -322,37 +322,14 @@ function Articles({ topics }) {
   // mostVotes();
 
   return (
-    <div>
-      <header className="w-full  text-center  bg-white">
-        <Header />
+    <>
+      <header className="w-full px-30">
+        {/* <h1 className="text-white bg-purple-900 w-full  ">Header </h1> */}
       </header>
-      <body className="px-5 py-5">
-        <div className=" m-auto grid grid-rows-20 grid-cols-2 gap-2 mb-24 bg-white min-w-full md:grid-rows-20 md:grid-cols-5-w-full ">
-          <div className="tile bg-white col-span-2 w-full  md:col-span-5">
-            {/* <h1 className="text-white w-full  font-TimesNew"> Hello </h1> */}
-            <div className="bg-white flex -mt-5 mb-2">
-              {" "}
-              <Link className="link" to={`/articles?sort_by=created_at`}>
-                <button className="filterButtons" onClick={handleFilter}>
-                  Date
-                </button>
-              </Link>
-              <Link className="link" to={`/articles?sort_by=comment_count`}>
-                <button className="filterButtons" onClick={handleFilter}>
-                  Number of comments
-                </button>
-              </Link>
-              <Link className="link" to={`/articles?sort_by=votes`}>
-                <button className="filterButtons" onClick={handleFilter}>
-                  Sort By Votes
-                </button>
-              </Link>
-              <select onChange={setSortOrder}>
-                <option value={""}> Order by ...</option>
-                <option value={"asc"}> ASC</option>
-                <option value={"desc"}> DESC</option>
-              </select>
-            </div>
+      <body>
+        <div className=" m-auto grid grid-rows-20 grid-cols-2 gap-2 md:grid-rows-20 md:grid-cols-5-w-full">
+          <div className="tile bg-purple-900 col-span-2 w-full  md:col-span-5">
+            <h1 className="text-white w-full  ">HG News </h1>
           </div>
           <div className="tile bg-amber-500 row-start-2 row-end-10 col-span-2 md:row-start-2 md:row-end-10 md:col-span-5 ">
             {/* <h1 className="tile-marker"> */}{" "}
@@ -381,7 +358,7 @@ function Articles({ topics }) {
           </div>
         </div>
       </body>
-    </div>
+    </>
   );
 }
 

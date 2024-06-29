@@ -10,42 +10,43 @@ function Header() {
   return (
     <>
       <div className=" bg-violet-950 pb-10 ">
-        <h1 className="text-white shadow-lg font-TimesNew"> HG News</h1>
+        <h1 className="text-white shadow-lg font-TimesNew mb-5"> HG News</h1>
       </div>
       <div className="bg-violet-950 mt-5">
-        <div className="text-white bg-violet-950  absolute top-0 right-0 mt-14  w-full  flex items-center ">
+        <div className="text-white bg-violet-950  absolute top-0 right-0 mt-14    flex  ">
           {/* <div className=" "> */}
           <Link className="link" to="/articles">
-            <button className=" w-full  rounded-lg shadow-lg p-2 font-sans bg-transparent cursor-pointer mr-5 border-solid border-1   text-white text-xxs">
+            <button className=" w-full  rounded-lg shadow-lg p-2 font-sans bg-transparent cursor-pointer mr-10 border-solid border-1   text-white text-xxs">
               <p className="text-sm font-TimesNew font-extrabold">
                 {" "}
                 All Articles
               </p>
             </button>
           </Link>
-          <button className=" w-full  rounded-lg shadow-lg p-2 font-sans bg-transparent cursor-pointer mr-5 border-solid border-1   text-white text-xxs">
-            <p className="text-sm font-TimesNew font-extrabold"> Topics</p>
-          </button>
-          {/* </div> */}
+          <Link className="link" to="/topics">
+            <button className=" w-full  rounded-lg shadow-lg p-2 font-sans bg-transparent cursor-pointer mr-20 border-solid border-1   text-white text-xxs">
+              <p className="text-sm font-TimesNew font-extrabold"> Topics</p>
+            </button>
+          </Link>
+
+          {/* <div className=""> */}
           <Link className="link" to="/">
-            <img className=" w-20 " src={homeSymbol} />
+            <img className=" w-12 " src={homeSymbol} />
           </Link>
           <Link className="link" to="/users">
             <img className=" w-7 " src={loginSymbol} />
           </Link>
-          <div>
-            <Link className="link" to="/users">
-              {/* <h3 className="float-right text-white text-4xl">Login</h3> */}
-            </Link>
-          </div>
+          {user ? (
+            <img className="w-10 h-7 mr-5 bg-white " src={user.avatar_url} />
+          ) : (
+            <>
+              {" "}
+              <p> Guest </p>
+            </>
+          )}
+
+          {/* </div> */}
         </div>
-        {/* <div className="float-left text-white mb-7"> */}
-        <p>
-          {/* {"Current User:"}
-          {user.username}{" "}
-          <img className="HeaderPageUserLogo" src={user.avatar_url} /> */}
-        </p>
-        {/* </div> */}
       </div>
     </>
   );
