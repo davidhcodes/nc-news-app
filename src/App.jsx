@@ -42,7 +42,7 @@ function App() {
             element={<Users setIsLoggedIn={setIsLoggedIn} />}
           />
           <Route path="/topics" element={<Topics topics={topics} />} />
-          <Route path="/articles" element={<Articles topics={topics} />} />
+          <Route path="/articles" element={<ArticlesList topics={topics} />} />
           <Route path="/articles/:article_id" element={<IndividualArticle />} />
         </Routes>
       </BrowserRouter>
