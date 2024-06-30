@@ -39,10 +39,9 @@ function Header() {
           {user ? (
             <img className="w-10 h-7 mr-5 bg-white " src={user.avatar_url} />
           ) : (
-            <>
-              {" "}
-              <p> Guest </p>
-            </>
+            <div className="bg-indigo-800">
+              <p> </p>
+            </div>
           )}
 
           {/* </div> */}
