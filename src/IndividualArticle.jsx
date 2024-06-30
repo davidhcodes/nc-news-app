@@ -65,9 +65,6 @@ function IndividualArticle() {
         </header>
         <body>
           <div className=" m-auto grid grid-rows-50 grid-cols-2 gap-2 md:grid-rows-20 md:grid-cols-5-w-full ">
-            {/* <div className="tile bg-purple-900 col-span-2 w-full  md:col-span-5">
-              <Header />
-            </div> */}
             <div className="tile bg-amber-500 row-start-1 row-end-10 col-span-2 md:row-start-1 md:row-end-10 md:col-span-5 w-full h-full">
               {" "}
               <img
@@ -86,7 +83,6 @@ function IndividualArticle() {
               </div>
             </div>
             <div className="tile bg-white row-start-30 row-end-35 col-span-2 text-left ml-2 font-TimesNew md:tile md:bg-white row-start-30 row-end-35 md:col-span-5 md:text-left md:ml-2 md:font-TimesNew">
-              {/* <div className="flex space-x-2"> */}
               <p className="capitalize text-purple-900 font-semibold text-1xl md:capitalize md:text-purple-900 md:font-semibold md:text-5xl">
                 {article.author}
               </p>
@@ -94,7 +90,7 @@ function IndividualArticle() {
                 <p className="text-xxs md:text-3xl">
                   {formatTime(article.created_at)}
                 </p>
-                {/* </div> */}
+
                 <button
                   className="ml-5 flex justify-center items-center flex-col h-4 p-0 md:ml-5 md:flex jmd:ustify-center md:items-center md:flex-col md:h-4 md:p-0"
                   onClick={() => incVoteArticles(article.article_id)}
@@ -102,11 +98,6 @@ function IndividualArticle() {
                   <p className="text-2xl ml-10 text-purple-900  md:text-5xl md:ml-10 md:mt-8">
                     ⬆
                   </p>
-                  {/* <img
-                  className="h-5 w-8 "
-                  src={upvote}
-                  alt="Upvote the article"
-                /> */}
                 </button>
 
                 <p className="text-xxs -ml-10 mb-1 md:mb-1 md:-ml-10 md:text-4xl  md:mr-8">
@@ -121,13 +112,10 @@ function IndividualArticle() {
                 </p>
               </div>
             </div>
-            {/* <div className="tile bg-purple-600 row-start-10 row-end-30 col-span-2"> */}
+
             <div className="tile bg-slate-200 row-start-60 row-end-80 col-span-2 mt-5 md:tile md:bg-slate-200 md:row-start-60 md:row-end-80 md:col-span-5 md:mt-5">
               <Comments article_id={article_id} article={article} />
             </div>
-            {/* <div className="tile bg-pink-600 row-start-60 row-end-70 col-span-2"></div>
-          {/* </div> */}
-            {/* <Comments article_id={article_id} article={article} /> */}
           </div>
         </body>
       </div>

@@ -77,8 +77,7 @@ function Users({ setIsLoggedIn }) {
                       src={user.avatar_url}
                       alt={user.username}
                     />
-                    {/* </div> */}
-                    {/* <div className="bg-purple-900 "> */}
+
                     <button
                       className="bg-purple-950 text-white px-4 py-2 mt-2 ml-12 active:bg-black active:text-white md:bg-violet-950 md:text-white md:px-4 md:py-2 md:mt-2 md:mr-12 md:active:bg-black md:active:text-white md:text-3xl "
                       onClick={updateUsername}

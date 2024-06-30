@@ -272,22 +272,7 @@ function Articles({ topics }) {
                 </div>
               </div>
 
-              <div className="mt-auto ">
-                {/* <div className=" flex text-xs ">
-                  <img
-                    className="h-2 w-2 mt-1 mr-1"
-                    src={comments_symbol}
-                    alt="Comments"
-                  />
-                  <p className="text-black">{article.comment_count}</p>
-                  <img
-                    className="h-3 w-7 mt-0.5 "
-                    src={upvote}
-                    alt="Comments"
-                  />
-                  <p className="-ml-2 mr-10  text-black"> {article.votes}</p>
-                </div> */}
-              </div>
+              <div className="mt-auto "></div>
             </Link>
           </div>
         </div>
@@ -332,8 +317,6 @@ function Articles({ topics }) {
     }
   };
 
-  // mostVotes();
-
   return (
     <div>
       <header className="w-full  text-center  bg-white">
@@ -342,7 +325,6 @@ function Articles({ topics }) {
       <body className="px-5 py-5">
         <div className=" m-auto grid grid-rows-20 grid-cols-2 gap-2 mb-24 bg-white min-w-full md:grid-rows-20 md:grid-cols-5 w-full ">
           <div className="tile bg-white col-span-2 w-full  md:col-span-5 md:w-full">
-            {/* <h1 className="text-white w-full  font-TimesNew"> Hello </h1> */}
             <div className="bg-white flex -mt-5 mb-2 md:bg-white md:text-black">
               {" "}
               <Link className="link" to={`/articles?sort_by=created_at`}>
@@ -377,10 +359,7 @@ function Articles({ topics }) {
             </div>
           </div>
           <div className="tile bg-white row-start-2 row-end-10 col-span-2 md:row-start-2 md:row-end-10 md:col-span-3  ">
-            {/* <h1 className="tile-marker"> */}{" "}
             {isLoading ? <p>Loading!</p> : <ul>{mainArticleArray[0]}</ul>}
-            {/* {console.log(mostPopularArticles)} */}
-            {/* </h1>{" "} */}
           </div>
           <div className="tile bg-white row-start-10 row-end-32 col-span-1 w-full h-full md:row-start-2 md:row-end-5 md:col-span-2">
             {isLoading ? (
