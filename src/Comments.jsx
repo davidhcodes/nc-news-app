@@ -129,7 +129,7 @@ function Comments({ article_id, article }) {
       <>
         {" "}
         <div className="ml-2 md:ml-2">
-          <h1 className="font-TimesNew mb-3  text-purple-900 md:font-TimesNew md:mb-3  md:text-8xl md:text-purple-900">
+          <h1 className="font-TimesNew mb-3  text-purple-900 md:font-TimesNew md:mb-3  md:text-6xl md:text-purple-900">
             {" "}
             Comments{" "}
           </h1>
@@ -138,7 +138,7 @@ function Comments({ article_id, article }) {
             className="flex mb-10 md:flex md:mb-10"
             id="addNewComment"
           >
-            <label className="font-bold mr-2 md:font-bold md:mr-2 md:text-3xl">
+            <label className="font-bold mr-2 md:font-bold md:mr-2 md:text-2xl">
               Add Comment
             </label>
             <textarea
@@ -155,7 +155,7 @@ function Comments({ article_id, article }) {
               className=" flex h-10  mt-1 md:flex md:h-10 md:mt-1"
               type="submit"
             >
-              <p className="text-sm md:text-3xl md:ml-10 md:font-semibold ">
+              <p className="text-sm md:text-2xl md:ml-10 md:font-semibold ">
                 Submit
               </p>
             </button>
@@ -171,7 +171,7 @@ function Comments({ article_id, article }) {
                       key={comment.comment_id}
                       className="list-style-type-none mt-4 md:list-style-type-none md:mt-4"
                     >
-                      <div className="font-bold capitalize text-sm font-TimesNew md:font-bold md:capitalize md:text-2xl md:font-TimesNew">
+                      <div className="font-bold capitalize text-sm font-TimesNew md:font-bold md:capitalize md:text-xl md:font-TimesNew">
                         {comment.author}
                       </div>
 
@@ -179,11 +179,11 @@ function Comments({ article_id, article }) {
                         key={comment.comment_id}
                         className="mr-1 ml-1 md:mr-1 md:ml-1"
                       >
-                        <div className="bg-white flex text-left font-TimesNew pb-3 pl-1 md:bg-white md:flex md:text-left md:font-TimesNew md:pb-3 md:pl-1 md:text-3xl">
+                        <div className="bg-white flex text-left font-TimesNew pb-3 pl-1 md:bg-white md:flex md:text-left md:font-TimesNew md:pb-3 md:pl-1 md:text-2xl">
                           <p> {comment.body}</p>
                         </div>
                         <div className="bg-white mb-0 flex mt-0 md:bg-white md:mb-0 md:flex md:mt-0">
-                          <div className="font-TimesNew text-xs md:font-TimesNew md:text-2xl">
+                          <div className="font-TimesNew text-xs md:font-TimesNew md:text-xl">
                             {formatTime(comment.created_at)}
                           </div>
                           <div className="flex ml-10 md:flex md:ml-10">
@@ -192,9 +192,9 @@ function Comments({ article_id, article }) {
                                 incVoteComments(comment.comment_id)
                               }
                             >
-                              <p className="md:text-3xl"> ⬆️</p>
+                              <p className="md:text-2xl"> ⬆️</p>
                             </button>
-                            <p className="md:text-3xl">{comment.votes}</p>
+                            <p className="md:text-2xl">{comment.votes}</p>
                           </div>
                           {user.username === comment.author ? (
                             <p>

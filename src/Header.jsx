@@ -9,14 +9,14 @@ function Header() {
 
   return (
     <>
-      <div className=" bg-violet-950 pb-10 md:bg-violet-950">
-        <h1 className="text-white shadow-lg font-TimesNew mb-5 md:text-white md:shadow-lg md:font-TimesNew md:mb-5 md:text-7xl">
+      <div className=" bg-violet-950 pb-10 md:bg-violet-950 md:pb-8">
+        <h1 className="text-white shadow-lg font-TimesNew mb-5 md:text-white md:shadow-lg md:font-TimesNew md:mb-5 md:text-7xl md:pb-8">
           {" "}
           HG News
         </h1>
       </div>
-      <div className="bg-violet-950 mt-5 md:bg-violet-950 md:flex">
-        <div className="text-white bg-violet-950  absolute top-0 right-0 mt-14    flex md:text-white md:bg-violet-950  md:absolute md:top-0 md:right-0 md:mt-14    md:flex  ">
+      <div className="bg-violet-950 mt-5 md:bg-violet-950 md:flex ">
+        <div className="text-white bg-violet-950  absolute top-0 right-0 mt-14    flex md:text-white md:bg-violet-950  md:absolute md:top-0 md:right-0 md:mt-24    md:flex  ">
           <Link className="link" to="/articles">
             <button className=" w-full  rounded-lg shadow-lg p-2 font-sans bg-transparent cursor-pointer mr-10 border-solid border-1   text-white text-xxs md:w-full  md:rounded-lg md:shadow-lg md:p-2 md:font-sans md:bg-transparent md:cursor-pointer md:mr-10 md:border-solid md:border-1   md:text-white md:text-2xl">
               <p className="text-sm font-TimesNew font-extrabold md:text-2xl  md:font-TimesNew  md:font-extrabold">

@@ -74,20 +74,20 @@ function IndividualArticle() {
             </div>
             <div className="tile bg-slate-100 row-start-10 row-end-30 col-span-2 text-left ml-1  font-TimesNew md:tile md:bg-slate-100 md:row-start-10 row-end-30 md:col-span-5 md:text-left md:ml-1  md:font-TimesNew">
               <div className="p-0 m-0 md:p-0 md:m-0">
-                <h2 className="text-1xl mr-310 capitalize text-purple-900 md:text-5xl md:mr-310 md:capitalize md:text-purple-900">
+                <h2 className="text-1xl mr-310 capitalize text-purple-900 md:text-3xl md:mr-310 md:capitalize md:text-purple-900">
                   {article.topic}
                 </h2>
-                <h1 className=" font-TimesNew text-4xl text-left font-semibold md:font-TimesNew md:text-9xl md:text-left md:font-semibold">
+                <h1 className=" font-TimesNew text-4xl text-left font-semibold md:font-TimesNew md:text-6xl md:text-left md:font-semibold">
                   {article.title}
                 </h1>
               </div>
             </div>
             <div className="tile bg-white row-start-30 row-end-35 col-span-2 text-left ml-2 font-TimesNew md:tile md:bg-white row-start-30 row-end-35 md:col-span-5 md:text-left md:ml-2 md:font-TimesNew">
-              <p className="capitalize text-purple-900 font-semibold text-1xl md:capitalize md:text-purple-900 md:font-semibold md:text-5xl">
+              <p className="capitalize text-purple-900 font-semibold text-1xl md:capitalize md:text-purple-900 md:font-semibold md:text-2xl">
                 {article.author}
               </p>
               <div className="flex md:flex md:space-x-8 ">
-                <p className="text-xxs md:text-3xl">
+                <p className="text-xxs md:text-2xl">
                   {formatTime(article.created_at)}
                 </p>
 
@@ -95,19 +95,19 @@ function IndividualArticle() {
                   className="ml-5 flex justify-center items-center flex-col h-4 p-0 md:ml-5 md:flex jmd:ustify-center md:items-center md:flex-col md:h-4 md:p-0"
                   onClick={() => incVoteArticles(article.article_id)}
                 >
-                  <p className="text-2xl ml-10 text-purple-900  md:text-5xl md:ml-10 md:mt-8">
+                  <p className="text-2xl ml-10 text-purple-900  md:text-2xl md:ml-10 md:mt-4 md:-mr-4">
                     ⬆
                   </p>
                 </button>
 
-                <p className="text-xxs -ml-10 mb-1 md:mb-1 md:-ml-10 md:text-4xl  md:mr-8">
+                <p className="text-xxs -ml-10 mb-1 md:mb-1 md:-ml-10 md:text-2xl  md:mr-8">
                   {article.votes}
                 </p>
               </div>
             </div>
             <div className="tile bg-slate-100 row-start-35 row-end-60 col-span-2 ml-1  md:tile md:bg-slate-100 md:row-start-35 md:row-end-60 md:col-span-5 md:ml-1 ">
               <div className="flex md:flex">
-                <p className="text-left font-TimesNew text-sm md:text-left md:font-TimesNew md:text-4xl ">
+                <p className="text-left font-TimesNew text-sm md:text-left md:font-TimesNew md:text-2xl md:px-6">
                   {article.body}
                 </p>
               </div>

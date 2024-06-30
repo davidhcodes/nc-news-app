@@ -130,14 +130,14 @@ function Articles({ topics }) {
             <h3 className="text-purple-900 text-left font-TimesNew text-2xl capitalize font-semibold md:text-purple-900 md:text-left md:font-TimesNew md:text-5xl md:pb- md:capitalize md:font-semibold md:mb-8">
               {article.topic}{" "}
             </h3>
-            <h1 className="font-semibold text-2xl text-justify font-TimesNew text-black md:font-semibold md:text-7xl md:text-justify md:font-TimesNew md:text-black md:pr-2 md:mb-8">
+            <h1 className="font-semibold text-2xl text-justify font-TimesNew text-black md:font-semibold md:text-5xl md:text-left md:font-TimesNew md:text-black md:pr-2 md:mb-8">
               {" "}
               {article.title}
             </h1>
-            <h4 className="text-purple-900 text-left font-TimesNew text-sm capitalize font-light md:text-purple-900 md:text-left md:font-TimesNew md:text-3xl md:capitalize md:font-light md:mb-8">
+            <h4 className="text-purple-900 text-left font-TimesNew text-sm capitalize font-light md:text-purple-900 md:text-left md:font-TimesNew md:text-2xl md:capitalize md:font-light md:mb-8">
               {article.author}
             </h4>
-            <div className="flex text-xs md:flex md:text-3xl">
+            <div className="flex text-xs md:flex md:text-2xl">
               <img
                 className="h-4 w-4 mt-0.5 mr-1 md:h-12 md:w-16"
                 src={comments_symbol}
@@ -180,7 +180,7 @@ function Articles({ topics }) {
                 src={article.article_img_url}
                 alt="Secondary article image"
               />
-              <h3 className="text-black text-left font-TimesNew text-xs capitalize font-semibold md:text-black md:text-left md:font-TimesNew md:text-6xl md:capitalize md:font-semibold ">
+              <h3 className="text-black text-left font-TimesNew text-xs capitalize font-semibold md:text-black md:text-left md:font-TimesNew md:text-3xl md:capitalize md:font-semibold ">
                 {article.title}
               </h3>
               <h3 className="text-purple-900 text-left font-TimesNew text-xxs capitalize font-semibold md:text-purple-900 md:text-left md:font-TimesNew md:text-2xl md:capitalize md:font-semibold">
@@ -235,10 +235,10 @@ function Articles({ topics }) {
                   alt="Secondary article image"
                 />
                 <div className="float-right md:float-right">
-                  <h3 className="text-black text-left font-TimesNew text-xs capitalize font-semibold md:text-black md:text-left md:font-TimesNew md:text-5xl md:capitalize md:font-semibold ">
+                  <h3 className="text-black text-left font-TimesNew text-xs capitalize font-semibold md:text-black md:text-left md:font-TimesNew md:text-2xl md:capitalize md:font-semibold ">
                     {article.title}
                   </h3>
-                  <h3 className="text-purple-900 text-left font-TimesNew text-xxs capitalize font-semibold md:text-purple-900 md:text-left md:font-TimesNew md:text-3xl md:capitalize md:font-semibold">
+                  <h3 className="text-purple-900 text-left font-TimesNew text-xxs capitalize font-semibold md:text-purple-900 md:text-left md:font-TimesNew md:text-2xl md:capitalize md:font-semibold">
                     {article.topic}
                   </h3>
                   <div className="flex md:flex">
@@ -264,7 +264,7 @@ function Articles({ topics }) {
                         {" "}
                         {article.votes}
                       </p>
-                      <p className="text-black  font-light text-xxs absolute right-0 mr-7 md:text-black md:font-light md:absolute md:right-0 md:mr-7 md:text-3xl ">
+                      <p className="text-black  font-light text-xxs absolute right-0 mr-7 md:text-black md:font-light md:absolute md:right-0 md:mr-7 md:text-1xl ">
                         {formatShortTime(article.created_at)}
                       </p>
                     </div>
@@ -358,7 +358,7 @@ function Articles({ topics }) {
               </select>
             </div>
           </div>
-          <div className="tile bg-white row-start-2 row-end-10 col-span-2 md:row-start-2 md:row-end-10 md:col-span-3  ">
+          <div className="tile bg-slate-100 w-full h-full row-start-2 row-end-10 col-span-2 md:row-start-2 md:row-end-10 md:col-span-3  ">
             {isLoading ? <p>Loading!</p> : <ul>{mainArticleArray[0]}</ul>}
           </div>
           <div className="tile bg-white row-start-10 row-end-32 col-span-1 w-full h-full md:row-start-2 md:row-end-5 md:col-span-2">

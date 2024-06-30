@@ -73,13 +73,13 @@ function Users({ setIsLoggedIn }) {
                 >
                   <div className="flex flex-col items-center mt-10 md:flex md:flex-col md:items-center ">
                     <img
-                      className="w-12 h-12 rounded-full  bg-white md:w-36 md:h-36"
+                      className="w-20 h-20 rounded-full  bg-white md:w-36 md:h-36"
                       src={user.avatar_url}
                       alt={user.username}
                     />
 
                     <button
-                      className="bg-purple-950 text-white px-4 py-2 mt-2 ml-12 active:bg-black active:text-white md:bg-violet-950 md:text-white md:px-4 md:py-2 md:mt-2 md:mr-12 md:active:bg-black md:active:text-white md:text-3xl "
+                      className="bg-violet-950 text-white  px-4 py-2 mt-2 font-semibold active:bg-black active:text-white md:bg-violet-950 md:text-white md:px-4 md:py-2 md:mt-2 md:mr-12 md:active:bg-black md:active:text-white md:text-3xl "
                       onClick={updateUsername}
                     >
                       {user.username}

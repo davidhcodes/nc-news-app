@@ -20,11 +20,11 @@ function Topics({ topics }) {
               </div>
             </div>
           </div>
-          <h1 className="text-white  text-7xl text-center absolute top-0 mt-40 md:text-white  md:text-7xl md:text-center md:absolute md:top-0 md:mt-40">
+          <h1 className="text-white  text-7xl text-center absolute top-0 mt-40 md:text-white  md:text-7xl md:text-center md:absolute md:top-0 md:mt-40 ">
             Select Topics
           </h1>
 
-          <div className="inline-block text-center space-y-5 mb-72 ">
+          <div className="inline-block text-center space-y-5 mb-72 mt-36 md:inline-block md:text-center md:space-y-5 md:mt-10 ">
             {isLoading ? (
               <p>Loading!</p>
             ) : (
